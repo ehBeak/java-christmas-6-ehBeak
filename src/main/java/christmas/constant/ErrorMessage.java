@@ -6,6 +6,7 @@ public enum ErrorMessage {
     EMPTY_NOT_ALLOWED("빈 문자열을 입력할 수 없습니다. 다시 입력해 주세요."),
     BLANK_NOT_ALLOWED("공백을 입력할 수 없습니다. 다시 입력해 주세요."),
     ONLY_NUMBER_ALLOWED("숫자만 입력할 수 있습니다. 다시 입력해주세요."),
+    INVALID_ORDER("유효하지 않은 주문입니다. 다시 입력해 주세요."),
 
     DELIMITER_BOTH_ENDS_NOT_ALLOWED("구분자는 문자열의 맨 앞 뒤에 올 수 없습니다. 다시 입력해 주세요."),
     CONSECUTIVE_DELIMITER_NOT_ALLOWED("구분자가 연속될 수 없습니다. 다시 입력해 주세요."),
