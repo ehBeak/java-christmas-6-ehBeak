@@ -1,6 +1,7 @@
 package christmas.util;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.time.LocalDate;
 import java.util.Map;
@@ -25,6 +26,14 @@ class ConverterTest {
                 .isInstanceOf(Map.class);
 
 
+    }
+
+    @DisplayName("중복인 메뉴를 입력하면 예외가 발생한다.")
+    @Test
+    void convertDuplicatedOrderDetailsToMap() {
+        assertThatThrownBy(() -> Converter.parseOrderDetails("티본스테이크-1,티본스테이크-2,초코케이크-2,제로콜라-1"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
     }
 
     @DisplayName("날짜 문자열을 입력하면 날짜 타입으로 변환한다.")
