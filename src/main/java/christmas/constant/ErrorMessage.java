@@ -7,6 +7,8 @@ public enum ErrorMessage {
     BLANK_NOT_ALLOWED("공백을 입력할 수 없습니다. 다시 입력해 주세요."),
     ONLY_NUMBER_ALLOWED("숫자만 입력할 수 있습니다. 다시 입력해주세요."),
     INVALID_ORDER("유효하지 않은 주문입니다. 다시 입력해 주세요."),
+    ORDER_OVER_20_NOT_ALLOWED("메뉴는 한 번에 최대 20개까지만 주문할 수 있습니다."),
+    ORDER_UNDER_ZERO_NOT_ALLOWED("메뉴는 0개 주문할 수 없습니다."),
 
     DELIMITER_BOTH_ENDS_NOT_ALLOWED("구분자는 문자열의 맨 앞 뒤에 올 수 없습니다. 다시 입력해 주세요."),
     CONSECUTIVE_DELIMITER_NOT_ALLOWED("구분자가 연속될 수 없습니다. 다시 입력해 주세요."),
