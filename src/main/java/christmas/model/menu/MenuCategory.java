@@ -40,4 +40,9 @@ public enum MenuCategory {
                 .anyMatch(menu -> menu.equals(orderMenu));
     }
 
+    public static Boolean isMainCategory(Menu orderMenu) {
+        return MenuCategory.MAIN.menus.stream()
+                .anyMatch(menu -> menu.equals(orderMenu));
+    }
+
 }

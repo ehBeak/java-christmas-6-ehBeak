@@ -39,6 +39,15 @@ public class Orders {
         return dessertCount;
     }
 
+    public Integer findMainCount() {
+        Integer mainCount = 0;
+        for (Menu menu : orders.keySet()) {
+            if (MenuCategory.isMainCategory(menu))
+                mainCount += orders.get(menu);
+        }
+        return mainCount;
+    }
+
     private void validateOrders(Map<Menu, Integer> orders) {
         validateZeroCount(orders);
         validateTotalCount(orders);
