@@ -43,11 +43,11 @@ public class Orders {
 
     private void validateZeroCount(Map<Menu, Integer> orders) {
         for (Menu menu : orders.keySet()) {
-            countZeroThrowException(menu);
+            countZeroThrowException(menu, orders);
         }
     }
 
-    private void countZeroThrowException(Menu menu) {
+    private void countZeroThrowException(Menu menu, Map<Menu, Integer> orders) {
         if (orders.get(menu).equals(0)) {
             throw new IllegalArgumentException(ORDER_UNDER_ZERO_NOT_ALLOWED.toString());
         }
