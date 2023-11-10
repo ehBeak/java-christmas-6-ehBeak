@@ -3,7 +3,9 @@ package christmas.model;
 import static christmas.model.menu.Menu.BUTTON_MUSHROOM_SOUP;
 import static christmas.model.menu.Menu.CHOCOLATE_CAKE;
 import static christmas.model.menu.Menu.RED_WINE;
+import static christmas.model.menu.Menu.T_BONE_STEAK;
 import static christmas.model.menu.Menu.ZERO_COLA;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -65,6 +67,21 @@ class OrdersTest {
         orderMenus.put(CHOCOLATE_CAKE, 2);
 
         assertThatNoException().isThrownBy(() -> new Orders(orderMenus, orderDate));
+    }
+
+    @DisplayName("주문한 메뉴들의 총 가격을 구한다.")
+    @Test
+    void calculateTotalPrice() {
+        LocalDate orderDate = LocalDate.of(2023, 12, 11);
+        Map<Menu, Integer> orderMenus = new EnumMap<>(Menu.class);
+        orderMenus.put(BUTTON_MUSHROOM_SOUP, 2);
+        orderMenus.put(RED_WINE, 1);
+        orderMenus.put(T_BONE_STEAK, 1);
+        Orders orders = new Orders(orderMenus, orderDate);
+
+        Integer totalPrice = orders.calculateTotalPrice();
+
+        assertThat(totalPrice).isEqualTo(127000);
     }
 
 }
