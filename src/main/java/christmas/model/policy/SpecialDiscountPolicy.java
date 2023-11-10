@@ -11,7 +11,7 @@ public class SpecialDiscountPolicy {
     private static final LocalDate END_DATE = LocalDate.of(2023, 12, 31);
 
     public Integer calculateDiscountPrice(Orders orders) {
-        if (isEventPeriod(orders) && isEventPeriod(orders)) {
+        if (isEventPeriod(orders) && isSpecialDay(orders)) {
             return DISCOUNT_PRICE;
         }
         return 0;
@@ -23,6 +23,6 @@ public class SpecialDiscountPolicy {
 
     private Boolean isSpecialDay(Orders orders) {
         DayOfWeek dayOfWeek = orders.getDayOfWeek();
-        return dayOfWeek.equals(DayOfWeek.SUNDAY) && orders.IsOrderDateChristmas();
+        return dayOfWeek.equals(DayOfWeek.SUNDAY) || orders.IsOrderDateChristmas();
     }
 }
