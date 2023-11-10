@@ -13,4 +13,11 @@ public class Customer {
         this.eventPolicies = eventPolicies;
     }
 
+    public Integer getTotalDiscountPrice() {
+        int totalDiscountPrice = 0;
+        for (EventPolicy event : eventPolicies) {
+            totalDiscountPrice += event.calculateDiscountPrice(orders);
+        }
+        return totalDiscountPrice;
+    }
 }
