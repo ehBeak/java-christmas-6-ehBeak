@@ -106,4 +106,8 @@ public class Orders {
         return orderDate.getDayOfWeek();
     }
 
+    public Boolean IsOrderDateChristmas() {
+        return orderDate.isEqual(LocalDate.of(2024, 12, 25));
+    }
+
 }
