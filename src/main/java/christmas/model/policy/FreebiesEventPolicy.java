@@ -6,9 +6,9 @@ import java.time.LocalDate;
 
 public class FreebiesEventPolicy {
 
-    private static final Integer discountThresholdPrice = 120000;
-    private static final LocalDate startDate = LocalDate.of(2023, 12, 1);
-    private static final LocalDate endDate = LocalDate.of(2023, 12, 31);
+    private static final Integer DISCOUNT_THRESHOLD_PRICE = 120000;
+    private static final LocalDate START_DATE = LocalDate.of(2023, 12, 1);
+    private static final LocalDate END_DATE = LocalDate.of(2023, 12, 31);
 
     public Integer calculateDiscountPrice(Orders orders) {
         if (isEventPeriod(orders) && satisfiesDiscountConditions(orders)) {
@@ -18,11 +18,11 @@ public class FreebiesEventPolicy {
     }
 
     private Boolean isEventPeriod(Orders orders) {
-        return orders.notBefore(startDate) && orders.notAfter(endDate);
+        return orders.notBefore(START_DATE) && orders.notAfter(END_DATE);
     }
 
     private Boolean satisfiesDiscountConditions(Orders orders) {
-        return orders.calculateTotalPrice() >= discountThresholdPrice;
+        return orders.calculateTotalPrice() >= DISCOUNT_THRESHOLD_PRICE;
     }
 
 }
