@@ -7,6 +7,7 @@ import static christmas.constant.ErrorMessage.ORDER_UNDER_ZERO_NOT_ALLOWED;
 import christmas.model.menu.Menu;
 import christmas.model.menu.MenuCategory;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.Map;
 
 public class Orders {
@@ -76,6 +77,10 @@ public class Orders {
 
     public Boolean notAfter(LocalDate eventEndDate) {
         return orderDate.isBefore(eventEndDate) || orderDate.equals(eventEndDate);
+    }
+
+    public Integer getElapsedTime(LocalDate eventStartDate) {
+        return Period.between(eventStartDate, orderDate).getDays();
     }
 
 }
