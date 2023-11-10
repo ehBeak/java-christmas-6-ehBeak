@@ -36,4 +36,8 @@ public enum Menu {
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException(INVALID_ORDER.toString()));
     }
+
+    public Integer getPrice() {
+        return price;
+    }
 }

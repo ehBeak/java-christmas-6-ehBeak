@@ -20,6 +20,14 @@ public class Orders {
         this.orderDate = orderDate;
     }
 
+    public Integer calculateTotalPrice() {
+        Integer totalPrice = 0;
+        for (Menu menu : orders.keySet()) {
+            totalPrice += orders.get(menu) * menu.getPrice();
+        }
+        return totalPrice;
+    }
+
     private void validateOrders(Map<Menu, Integer> orders) {
         validateZeroCount(orders);
         validateTotalCount(orders);
