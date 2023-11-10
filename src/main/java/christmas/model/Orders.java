@@ -1,9 +1,11 @@
 package christmas.model;
 
+import static christmas.constant.ErrorMessage.ONLY_BEVERAGE_NOT_ALLOWED;
 import static christmas.constant.ErrorMessage.ORDER_OVER_20_NOT_ALLOWED;
 import static christmas.constant.ErrorMessage.ORDER_UNDER_ZERO_NOT_ALLOWED;
 
 import christmas.model.menu.Menu;
+import christmas.model.menu.MenuCategory;
 import java.time.LocalDate;
 import java.util.Map;
 
@@ -21,6 +23,7 @@ public class Orders {
     private void validateOrders(Map<Menu, Integer> orders) {
         validateZeroCount(orders);
         validateTotalCount(orders);
+        validateOnlyBeverage(orders);
     }
 
     private void validateTotalCount(Map<Menu, Integer> orders) {
@@ -50,4 +53,12 @@ public class Orders {
         }
     }
 
+    private void validateOnlyBeverage(Map<Menu, Integer> orders) {
+        for (Menu menu : orders.keySet()) {
+            if (!MenuCategory.isBeverageCategory(menu)) {
+                return;
+            }
+        }
+        throw new IllegalArgumentException(ONLY_BEVERAGE_NOT_ALLOWED.toString());
+    }
 }
