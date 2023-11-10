@@ -69,4 +69,13 @@ public class Orders {
         }
         throw new IllegalArgumentException(ONLY_BEVERAGE_NOT_ALLOWED.toString());
     }
+
+    public Boolean notBefore(LocalDate eventStartDate) {
+        return orderDate.isAfter(eventStartDate) || orderDate.equals(eventStartDate);
+    }
+
+    public Boolean notAfter(LocalDate eventEndDate) {
+        return orderDate.isBefore(eventEndDate) || orderDate.equals(eventEndDate);
+    }
+
 }
