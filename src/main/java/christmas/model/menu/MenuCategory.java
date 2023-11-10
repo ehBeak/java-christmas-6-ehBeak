@@ -35,4 +35,9 @@ public enum MenuCategory {
                 .anyMatch(menu -> menu.equals(orderMenu));
     }
 
+    public static Boolean isDessertCategory(Menu orderMenu) {
+        return MenuCategory.DESSERT.menus.stream()
+                .anyMatch(menu -> menu.equals(orderMenu));
+    }
+
 }

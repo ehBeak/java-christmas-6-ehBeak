@@ -6,6 +6,7 @@ import static christmas.constant.ErrorMessage.ORDER_UNDER_ZERO_NOT_ALLOWED;
 
 import christmas.model.menu.Menu;
 import christmas.model.menu.MenuCategory;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Map;
@@ -27,6 +28,15 @@ public class Orders {
             totalPrice += orders.get(menu) * menu.getPrice();
         }
         return totalPrice;
+    }
+
+    public Integer findDessertCount() {
+        Integer dessertCount = 0;
+        for (Menu menu : orders.keySet()) {
+            if (MenuCategory.isDessertCategory(menu))
+            dessertCount += orders.get(menu);
+        }
+        return dessertCount;
     }
 
     private void validateOrders(Map<Menu, Integer> orders) {
@@ -81,6 +91,10 @@ public class Orders {
 
     public Integer getElapsedTime(LocalDate eventStartDate) {
         return Period.between(eventStartDate, orderDate).getDays();
+    }
+
+    public DayOfWeek getDayOfWeek() {
+        return orderDate.getDayOfWeek();
     }
 
 }
