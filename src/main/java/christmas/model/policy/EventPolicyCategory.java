@@ -1,5 +1,7 @@
 package christmas.model.policy;
 
+import christmas.model.Orders;
+
 public enum EventPolicyCategory {
 
     CHRISTMAS_EVENT("크리스마스 디데이 할인", new ChristmasDiscountPolicy()),
@@ -17,8 +19,8 @@ public enum EventPolicyCategory {
         this.eventPolicy = eventPolicy;
     }
 
-    public EventPolicy getEventPolicy() {
-        return eventPolicy;
+    public Integer calculateDiscountPrice(Orders orders) {
+        return eventPolicy.calculateDiscountPrice(orders);
     }
 
     public String getEventName() {
