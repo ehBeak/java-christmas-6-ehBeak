@@ -12,9 +12,10 @@ public class OutputView {
     private static final String BENEFITS_MESSAGE = "<혜택 내역>";
     private static final String BENEFITS_PRICE_MESSAGE = "<총혜택 금액>";
     private static final String EXPECTED_PAYMENT_MESSAGE = "<할인 후 예상 결제 금액>";
+    private static final String FREEBIES_MESSAGE = "<증정 메뉴>";
 
     private static final String PRICE_FORMAT = "%,d원";
-    private static final String MENU_PRICE_FORMAT = "%s : %,d원";
+    private static final String MENU_PRICE_FORMAT = "%s: %,d원";
     private static final String ORDER_MENU_FORMAT = "%s %s개";
 
     public void printPreviewMessage(LocalDate orderDate) {
@@ -35,11 +36,27 @@ public class OutputView {
         System.out.println(String.format(PRICE_FORMAT, totalPrice));
     }
 
+    public void printFreebiesMenu(Map<String, Integer> freebies) {
+        System.out.println();
+        System.out.println(FREEBIES_MESSAGE);
+        if (freebies.isEmpty()) {
+            System.out.println("없음");
+            return;
+        }
+        for (String benefitsDetail : freebies.keySet()) {
+            System.out.println(String.format(ORDER_MENU_FORMAT, benefitsDetail, freebies.get(benefitsDetail)));
+        }
+    }
+
     public void printBenefits(Map<String, Integer> benefitsDetails) {
         System.out.println();
         System.out.println(BENEFITS_MESSAGE);
-        for (String benefit : benefitsDetails.keySet()) {
-            System.out.println(String.format(MENU_PRICE_FORMAT, benefit, benefitsDetails.get(benefit)));
+        if (benefitsDetails.isEmpty()) {
+            System.out.println("없음");
+            return;
+        }
+        for (String benefitsDetail : benefitsDetails.keySet()) {
+            System.out.println(String.format(MENU_PRICE_FORMAT, benefitsDetail, benefitsDetails.get(benefitsDetail)));
         }
     }
 
