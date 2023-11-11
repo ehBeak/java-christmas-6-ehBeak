@@ -10,6 +10,7 @@ public class OutputView {
     private static final String ORDER_MENU_MESSAGE = "<주문메뉴>";
     private static final String ORDER_TOTAL_PRICE_MESSAGE = "<할인 전 총주문 금액>";
     private static final String BENEFITS_MESSAGE = "<혜택 내역>";
+    private static final String BENEFITS_PRICE_MESSAGE = "<총혜택 금액>";
     private static final String PRICE_FORMAT = "%,d원";
     private static final String MENU_PRICE_FORMAT = "%s : %,d원";
     private static final String ORDER_MENU_FORMAT = "%s %s개";
@@ -38,6 +39,11 @@ public class OutputView {
         for (String benefit : benefitsDetails.keySet()) {
             System.out.println(String.format(MENU_PRICE_FORMAT, benefit, benefitsDetails.get(benefit)));
         }
+    }
 
+    public void printTotalBenefitPrice(int totalBenefitPrice) {
+        System.out.println();
+        System.out.println(BENEFITS_PRICE_MESSAGE);
+        System.out.println(String.format(PRICE_FORMAT, totalBenefitPrice));
     }
 }
