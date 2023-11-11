@@ -2,6 +2,7 @@ package christmas.model;
 
 import static christmas.model.policy.EventPolicyCategory.FREEBIES_EVENT;
 
+import christmas.model.menu.Menu;
 import christmas.model.policy.EventPolicyCategory;
 import java.util.HashSet;
 import java.util.Map;
@@ -20,7 +21,7 @@ public class Customer {
 
     private Set<EventPolicyCategory> createBenefits(Orders orders) {
         Set<EventPolicyCategory> categories = new HashSet<>();
-        for (EventPolicyCategory eventCategory: EventPolicyCategory.values()) {
+        for (EventPolicyCategory eventCategory : EventPolicyCategory.values()) {
             Integer discountPrice = eventCategory.calculateDiscountPrice(orders);
             if (discountPrice != 0) {
                 categories.add(eventCategory);
@@ -45,6 +46,13 @@ public class Customer {
 
     public Integer getExpectedPayment() {
         return orders.calculateTotalPrice() + getDiscountPrice();
+    }
+
+    public Map<String, Integer> getFreebies() {
+        if (isEligibleEvent(FREEBIES_EVENT)) {
+            return Map.of(Menu.CHAMPAGNE.getName(), 1);
+        }
+        return Map.of();
     }
 
     private Integer getDiscountPrice() {
