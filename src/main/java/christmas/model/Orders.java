@@ -48,6 +48,10 @@ public class Orders {
         return mainCount;
     }
 
+    public Map<Menu, Integer> getOrders() {
+        return orders;
+    }
+
     private void validateOrders(Map<Menu, Integer> orders) {
         validateZeroCount(orders);
         validateTotalCount(orders);
