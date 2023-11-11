@@ -11,6 +11,8 @@ public class OutputView {
     private static final String ORDER_TOTAL_PRICE_MESSAGE = "<할인 전 총주문 금액>";
     private static final String BENEFITS_MESSAGE = "<혜택 내역>";
     private static final String BENEFITS_PRICE_MESSAGE = "<총혜택 금액>";
+    private static final String EXPECTED_PAYMENT_MESSAGE = "<할인 후 예상 결제 금액>";
+
     private static final String PRICE_FORMAT = "%,d원";
     private static final String MENU_PRICE_FORMAT = "%s : %,d원";
     private static final String ORDER_MENU_FORMAT = "%s %s개";
@@ -45,5 +47,11 @@ public class OutputView {
         System.out.println();
         System.out.println(BENEFITS_PRICE_MESSAGE);
         System.out.println(String.format(PRICE_FORMAT, totalBenefitPrice));
+    }
+
+    public void printExpectedPayment(int totalDiscountPrice) {
+        System.out.println();
+        System.out.println(EXPECTED_PAYMENT_MESSAGE);
+        System.out.println(String.format(PRICE_FORMAT, totalDiscountPrice));
     }
 }
