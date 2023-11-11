@@ -20,7 +20,7 @@ public enum EventPolicyCategory {
     }
 
     public Integer calculateDiscountPrice(Orders orders) {
-        return eventPolicy.calculateDiscountPrice(orders);
+        return eventPolicy.calculateDiscountPrice(orders) * -1;
     }
 
     public String getEventName() {

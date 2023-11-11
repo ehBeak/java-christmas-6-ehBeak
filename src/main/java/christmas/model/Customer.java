@@ -1,7 +1,9 @@
 package christmas.model;
 
 import christmas.model.policy.EventPolicyCategory;
+import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Customer {
 
@@ -19,5 +21,11 @@ public class Customer {
             totalDiscountPrice += event.calculateDiscountPrice(orders);
         }
         return totalDiscountPrice;
+    }
+
+    public Map<String, Integer> getBenefitDetails() {
+        return eventPolicies.stream()
+                .collect(Collectors.toMap(EventPolicyCategory::getEventName,
+                        eventPolicyCategory -> eventPolicyCategory.calculateDiscountPrice(orders)));
     }
 }
