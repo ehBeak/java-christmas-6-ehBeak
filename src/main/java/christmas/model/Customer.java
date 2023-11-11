@@ -1,5 +1,7 @@
 package christmas.model;
 
+import static christmas.model.policy.EventPolicyCategory.FREEBIES_EVENT;
+
 import christmas.model.policy.EventPolicyCategory;
 import java.util.HashSet;
 import java.util.Map;
@@ -39,5 +41,20 @@ public class Customer {
         return benefitEvents.stream()
                 .collect(Collectors.toMap(EventPolicyCategory::getEventName,
                         eventPolicyCategory -> eventPolicyCategory.calculateDiscountPrice(orders)));
+    }
+
+    public Integer getExpectedPayment() {
+        return orders.calculateTotalPrice() + getDiscountPrice();
+    }
+
+    private Integer getDiscountPrice() {
+        if (isEligibleEvent(FREEBIES_EVENT)) {
+            return getBenefitPrice() - FREEBIES_EVENT.calculateDiscountPrice(orders);
+        }
+        return getBenefitPrice();
+    }
+
+    private Boolean isEligibleEvent(EventPolicyCategory eventPolicyCategory) {
+        return benefitEvents.contains(eventPolicyCategory);
     }
 }
