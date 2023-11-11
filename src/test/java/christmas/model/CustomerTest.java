@@ -21,7 +21,7 @@ class CustomerTest {
         Orders validOrders = createValidOrders(orderDate);
         Customer customer = new Customer(validOrders);
 
-        Integer totalDiscountPrice = customer.getTotalDiscountPrice();
+        Integer totalDiscountPrice = customer.getBenefitPrice();
 
         assertThat(totalDiscountPrice).isEqualTo(-27200);
     }

@@ -27,7 +27,7 @@ public class Customer {
         return categories;
     }
 
-    public Integer getTotalDiscountPrice() {
+    public Integer getBenefitPrice() {
         int totalDiscountPrice = 0;
         for (EventPolicyCategory event : benefitEvents) {
             totalDiscountPrice += event.calculateDiscountPrice(orders);
