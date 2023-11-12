@@ -28,6 +28,11 @@ public enum MenuCategory {
         this.menus = menus;
     }
 
+    public static Boolean isMenuInCategory(Menu orderMenu, MenuCategory category) {
+        return category.menus.stream()
+                .anyMatch(menu -> menu.equals(orderMenu));
+    }
+
     public static Boolean isBeverageCategory(Menu orderMenu) {
         return MenuCategory.BEVERAGE.menus.stream()
                 .anyMatch(menu -> menu.equals(orderMenu));
