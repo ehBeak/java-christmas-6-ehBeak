@@ -1,5 +1,6 @@
 package christmas.model.policy;
 
+import christmas.model.DayOfWeekCategory;
 import christmas.model.Orders;
 import java.time.DayOfWeek;
 

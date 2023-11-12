@@ -1,4 +1,4 @@
-package christmas.model.policy;
+package christmas.model;
 
 import static java.time.DayOfWeek.FRIDAY;
 import static java.time.DayOfWeek.MONDAY;

@@ -1,9 +1,8 @@
 package christmas.model;
 
-import static christmas.model.policy.EventPolicyCategory.FREEBIES_EVENT;
+import static christmas.model.EventPolicyCategory.FREEBIES_EVENT;
 
 import christmas.model.menu.Menu;
-import christmas.model.policy.EventPolicyCategory;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;

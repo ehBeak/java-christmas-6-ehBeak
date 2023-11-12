@@ -1,6 +1,11 @@
-package christmas.model.policy;
+package christmas.model;
 
-import christmas.model.Orders;
+import christmas.model.policy.ChristmasDiscountPolicy;
+import christmas.model.policy.EventPolicy;
+import christmas.model.policy.FreebiesEventPolicy;
+import christmas.model.policy.SpecialDiscountPolicy;
+import christmas.model.policy.WeekdayDiscountPolicy;
+import christmas.model.policy.WeekendDiscountPolicy;
 
 public enum EventPolicyCategory {
 
