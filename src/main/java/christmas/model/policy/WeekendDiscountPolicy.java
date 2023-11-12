@@ -1,5 +1,6 @@
 package christmas.model.policy;
 
+import static christmas.model.DayOfWeekCategory.WEEKEND_DAYS;
 import static christmas.model.menu.MenuCategory.MAIN;
 
 import christmas.model.DayOfWeekCategory;
@@ -33,6 +34,6 @@ public class WeekendDiscountPolicy implements EventPolicy {
 
     private Boolean isWeekend(Orders orders) {
         DayOfWeek dayOfWeek = orders.getDayOfWeek();
-        return DayOfWeekCategory.isWeekendDays(dayOfWeek);
+        return DayOfWeekCategory.isDayOfWeekInCategory(dayOfWeek, WEEKEND_DAYS);
     }
 }

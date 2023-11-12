@@ -22,14 +22,8 @@ public enum DayOfWeekCategory {
         this.dayOfWeeks = dayOfWeeks;
     }
 
-    public static Boolean isWeekDays(DayOfWeek dayOfWeek) {
-        return DayOfWeekCategory.WEEK_DAYS.dayOfWeeks.stream()
-                .anyMatch(day -> day.equals(dayOfWeek));
+    public static Boolean isDayOfWeekInCategory(DayOfWeek day, DayOfWeekCategory category) {
+        return category.dayOfWeeks.stream()
+                .anyMatch(dayOfWeek -> dayOfWeek.equals(day));
     }
-
-    public static Boolean isWeekendDays(DayOfWeek dayOfWeek) {
-        return DayOfWeekCategory.WEEKEND_DAYS.dayOfWeeks.stream()
-                .anyMatch(day -> day.equals(dayOfWeek));
-    }
-
 }

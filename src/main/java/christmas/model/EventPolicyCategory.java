@@ -13,8 +13,7 @@ public enum EventPolicyCategory {
     WEEKDAY_EVENT("평일 할인", WeekdayDiscountPolicy.getInstance()),
     WEEKEND_EVENT("주말 할인", WeekendDiscountPolicy.getInstance()),
     SPECIAL_EVENT("특별 할인", SpecialDiscountPolicy.getInstance()),
-    FREEBIES_EVENT("증정 이벤트", FreebiesEventPolicy.getInstance()),
-    ;
+    FREEBIES_EVENT("증정 이벤트", FreebiesEventPolicy.getInstance());
 
     private final String eventName;
     private final EventPolicy eventPolicy;
