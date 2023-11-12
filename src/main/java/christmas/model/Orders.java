@@ -4,8 +4,6 @@ import static christmas.exception.ErrorMessage.ONLY_BEVERAGE_NOT_ALLOWED;
 import static christmas.exception.ErrorMessage.ORDER_OVER_20_NOT_ALLOWED;
 import static christmas.exception.ErrorMessage.ORDER_UNDER_ZERO_NOT_ALLOWED;
 import static christmas.model.menu.MenuCategory.BEVERAGE;
-import static christmas.model.menu.MenuCategory.DESSERT;
-import static christmas.model.menu.MenuCategory.MAIN;
 
 import christmas.exception.ExceptionWithMessage;
 import christmas.model.menu.Menu;
@@ -34,22 +32,14 @@ public class Orders {
         return totalPrice;
     }
 
-    public Integer findDessertCount() {
-        Integer dessertCount = 0;
+    public Integer countMenuOnMenuCategory(MenuCategory menuCategory) {
+        Integer menuCount = 0;
         for (Menu menu : orders.keySet()) {
-            if (MenuCategory.isMenuInCategory(menu, DESSERT))
-            dessertCount += orders.get(menu);
+            if (MenuCategory.isMenuInCategory(menu, menuCategory)) {
+                menuCount += orders.get(menu);
+            }
         }
-        return dessertCount;
-    }
-
-    public Integer findMainCount() {
-        Integer mainCount = 0;
-        for (Menu menu : orders.keySet()) {
-            if (MenuCategory.isMenuInCategory(menu, MAIN))
-                mainCount += orders.get(menu);
-        }
-        return mainCount;
+        return menuCount;
     }
 
     public Map<Menu, Integer> getOrders() {

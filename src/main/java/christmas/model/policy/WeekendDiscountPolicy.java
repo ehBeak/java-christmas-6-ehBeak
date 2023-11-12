@@ -1,5 +1,7 @@
 package christmas.model.policy;
 
+import static christmas.model.menu.MenuCategory.MAIN;
+
 import christmas.model.DayOfWeekCategory;
 import christmas.model.Orders;
 import java.time.DayOfWeek;
@@ -22,7 +24,7 @@ public class WeekendDiscountPolicy implements EventPolicy {
     public Integer calculateDiscountPrice(Orders orders) {
         int totalDiscount = 0;
         if (isEventPeriod(orders) && isWeekend(orders)) {
-            totalDiscount += orders.findMainCount() * DISCOUNT_PRICE_PER_MAIN;
+            totalDiscount += orders.countMenuOnMenuCategory(MAIN) * DISCOUNT_PRICE_PER_MAIN;
         }
         return totalDiscount;
     }
