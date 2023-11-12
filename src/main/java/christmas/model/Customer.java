@@ -55,6 +55,10 @@ public class Customer {
         return Map.of();
     }
 
+    public Badge getEventBadge() {
+        return Badge.valueOf(getDiscountPrice());
+    }
+
     private Integer getDiscountPrice() {
         if (isEligibleEvent(FREEBIES_EVENT)) {
             return getBenefitPrice() - FREEBIES_EVENT.calculateDiscountPrice(orders);

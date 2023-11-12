@@ -7,12 +7,13 @@ import java.util.Map;
 public class OutputView {
 
     private static final String PREVIEW_MESSAGE = "%s월 %s일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!";
-    private static final String ORDER_MENU_MESSAGE = "<주문메뉴>";
+    private static final String ORDER_MENU_MESSAGE = "<주문 메뉴>";
     private static final String ORDER_TOTAL_PRICE_MESSAGE = "<할인 전 총주문 금액>";
     private static final String BENEFITS_MESSAGE = "<혜택 내역>";
     private static final String BENEFITS_PRICE_MESSAGE = "<총혜택 금액>";
     private static final String EXPECTED_PAYMENT_MESSAGE = "<할인 후 예상 결제 금액>";
     private static final String FREEBIES_MESSAGE = "<증정 메뉴>";
+    private static final String BADGE_MESSAGE = "<12월 이벤트 배지>";
 
     private static final String PRICE_FORMAT = "%,d원";
     private static final String MENU_PRICE_FORMAT = "%s: %,d원";
@@ -70,5 +71,11 @@ public class OutputView {
         System.out.println();
         System.out.println(EXPECTED_PAYMENT_MESSAGE);
         System.out.println(String.format(PRICE_FORMAT, totalDiscountPrice));
+    }
+
+    public void printBadgeName(String badgeName) {
+        System.out.println();
+        System.out.println(BADGE_MESSAGE);
+        System.out.println(badgeName);
     }
 }
