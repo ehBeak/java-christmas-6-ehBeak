@@ -8,8 +8,10 @@ import static christmas.model.menu.Menu.ZERO_COLA;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 import christmas.model.menu.Menu;
+import christmas.model.menu.MenuCategory;
 import java.time.LocalDate;
 import java.util.EnumMap;
 import java.util.Map;
@@ -17,6 +19,7 @@ import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class OrdersTest {
@@ -93,6 +96,31 @@ class OrdersTest {
         Integer totalPrice = orders.calculateTotalPrice();
 
         assertThat(totalPrice).isEqualTo(127000);
+    }
+
+    static Stream<Arguments> menuCategoryCount() {
+        return Stream.of(
+                arguments(MenuCategory.APPETIZER, 2),
+                arguments(MenuCategory.MAIN, 1),
+                arguments(MenuCategory.BEVERAGE, 1),
+                arguments(MenuCategory.DESSERT, 0)
+        );
+    }
+
+    @DisplayName("주어진 메뉴 종류에 해당하는 주문 메뉴 개수를 반환한다.")
+    @ParameterizedTest
+    @MethodSource("menuCategoryCount")
+    void calculate(MenuCategory menuCategory, Integer menuCount) {
+        LocalDate orderDate = LocalDate.of(2023, 12, 11);
+        Map<Menu, Integer> orderMenus = new EnumMap<>(Menu.class);
+        orderMenus.put(BUTTON_MUSHROOM_SOUP, 2);
+        orderMenus.put(RED_WINE, 1);
+        orderMenus.put(T_BONE_STEAK, 1);
+        Orders orders = new Orders(orderMenus, orderDate);
+
+        Integer totalPrice = orders.countMenuOnMenuCategory(menuCategory);
+
+        assertThat(totalPrice).isEqualTo(menuCount);
     }
 
     @DisplayName("주문일이 주어진 날짜 이전이면 거짓을 반환한다.")
