@@ -1,7 +1,8 @@
 package christmas.util;
 
-import static christmas.constant.ErrorMessage.INVALID_ORDER;
+import static christmas.exception.ErrorMessage.INVALID_ORDER;
 
+import christmas.exception.ExceptionWithMessage;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
@@ -26,7 +27,7 @@ public class Converter {
                             arr -> arr[0],
                             arr -> Integer.parseInt(arr[1])));
         } catch (IllegalStateException exception) {
-            throw new IllegalArgumentException(INVALID_ORDER.toString());
+            throw new ExceptionWithMessage(INVALID_ORDER.toString());
         }
     }
 

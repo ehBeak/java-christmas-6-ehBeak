@@ -1,9 +1,10 @@
 package christmas.model;
 
-import static christmas.constant.ErrorMessage.ONLY_BEVERAGE_NOT_ALLOWED;
-import static christmas.constant.ErrorMessage.ORDER_OVER_20_NOT_ALLOWED;
-import static christmas.constant.ErrorMessage.ORDER_UNDER_ZERO_NOT_ALLOWED;
+import static christmas.exception.ErrorMessage.ONLY_BEVERAGE_NOT_ALLOWED;
+import static christmas.exception.ErrorMessage.ORDER_OVER_20_NOT_ALLOWED;
+import static christmas.exception.ErrorMessage.ORDER_UNDER_ZERO_NOT_ALLOWED;
 
+import christmas.exception.ExceptionWithMessage;
 import christmas.model.menu.Menu;
 import christmas.model.menu.MenuCategory;
 import java.time.DayOfWeek;
@@ -23,7 +24,7 @@ public class Orders {
     }
 
     public Integer calculateTotalPrice() {
-        Integer totalPrice = 0;
+        int totalPrice = 0;
         for (Menu menu : orders.keySet()) {
             totalPrice += orders.get(menu) * menu.getPrice();
         }
@@ -61,7 +62,7 @@ public class Orders {
     private void validateTotalCount(Map<Menu, Integer> orders) {
         Integer totalCount = countTotalOrder(orders);
         if (totalCount > 20) {
-            throw new IllegalArgumentException(ORDER_OVER_20_NOT_ALLOWED.toString());
+            throw new ExceptionWithMessage(ORDER_OVER_20_NOT_ALLOWED.toString());
         }
     }
 
@@ -81,7 +82,7 @@ public class Orders {
 
     private void countZeroThrowException(Menu menu, Map<Menu, Integer> orders) {
         if (orders.get(menu).equals(0)) {
-            throw new IllegalArgumentException(ORDER_UNDER_ZERO_NOT_ALLOWED.toString());
+            throw new ExceptionWithMessage(ORDER_UNDER_ZERO_NOT_ALLOWED.toString());
         }
     }
 
@@ -91,7 +92,7 @@ public class Orders {
                 return;
             }
         }
-        throw new IllegalArgumentException(ONLY_BEVERAGE_NOT_ALLOWED.toString());
+        throw new ExceptionWithMessage(ONLY_BEVERAGE_NOT_ALLOWED.toString());
     }
 
     public Boolean notBefore(LocalDate eventStartDate) {
