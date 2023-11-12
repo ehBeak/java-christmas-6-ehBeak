@@ -1,9 +1,8 @@
 package christmas.validation;
 
-import static christmas.constant.ErrorMessage.BLANK_NOT_ALLOWED;
-import static christmas.constant.ErrorMessage.EMPTY_NOT_ALLOWED;
-import static christmas.constant.ErrorMessage.ONLY_DATE_ALLOWED;
-import static christmas.constant.ErrorMessage.ONLY_NUMBER_ALLOWED;
+import static christmas.exception.ErrorMessage.ONLY_DATE_ALLOWED;
+
+import christmas.exception.ExceptionWithMessage;
 
 public class DateValidator {
 
@@ -16,13 +15,13 @@ public class DateValidator {
 
     private void validateEmpty(String visitDate) {
         if (visitDate.isEmpty()) {
-            throw new IllegalArgumentException(EMPTY_NOT_ALLOWED.toString());
+            throw new ExceptionWithMessage(ONLY_DATE_ALLOWED.toString());
         }
     }
 
     private void validateBlank(String visitDate) {
         if (visitDate.isBlank()) {
-            throw new IllegalArgumentException(BLANK_NOT_ALLOWED.toString());
+            throw new ExceptionWithMessage(ONLY_DATE_ALLOWED.toString());
         }
     }
 
@@ -30,7 +29,7 @@ public class DateValidator {
         try {
             Integer.parseInt(visitDate);
         } catch (NumberFormatException exception) {
-            throw new IllegalArgumentException(ONLY_NUMBER_ALLOWED.toString());
+            throw new ExceptionWithMessage(ONLY_DATE_ALLOWED.toString());
         }
 
     }
@@ -38,7 +37,7 @@ public class DateValidator {
     private void validateDateRange(String visitDate) {
         int visitDateNumber = Integer.parseInt(visitDate);
         if (visitDateNumber < 1 || visitDateNumber > 31) {
-            throw new IllegalArgumentException(ONLY_DATE_ALLOWED.toString());
+            throw new ExceptionWithMessage(ONLY_DATE_ALLOWED.toString());
         }
     }
 }

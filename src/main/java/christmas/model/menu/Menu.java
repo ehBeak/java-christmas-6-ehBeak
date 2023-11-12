@@ -1,6 +1,6 @@
 package christmas.model.menu;
 
-import static christmas.constant.ErrorMessage.INVALID_ORDER;
+import static christmas.exception.ErrorMessage.INVALID_ORDER;
 
 import java.util.Arrays;
 
