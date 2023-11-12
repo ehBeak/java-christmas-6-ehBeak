@@ -32,20 +32,4 @@ public enum MenuCategory {
         return category.menus.stream()
                 .anyMatch(menu -> menu.equals(orderMenu));
     }
-
-    public static Boolean isBeverageCategory(Menu orderMenu) {
-        return MenuCategory.BEVERAGE.menus.stream()
-                .anyMatch(menu -> menu.equals(orderMenu));
-    }
-
-    public static Boolean isDessertCategory(Menu orderMenu) {
-        return MenuCategory.DESSERT.menus.stream()
-                .anyMatch(menu -> menu.equals(orderMenu));
-    }
-
-    public static Boolean isMainCategory(Menu orderMenu) {
-        return MenuCategory.MAIN.menus.stream()
-                .anyMatch(menu -> menu.equals(orderMenu));
-    }
-
 }
