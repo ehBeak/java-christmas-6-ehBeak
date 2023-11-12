@@ -1,5 +1,6 @@
 package christmas.validation;
 
+import static christmas.exception.ErrorMessage.INVALID_ORDER;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -24,7 +25,7 @@ class OrderFormatValidatorTest {
     void bothEndsDelimiterStringThrowException(String input) {
         assertThatThrownBy(() -> orderFormatValidator.validateDelimiterFormat(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 구분자는 문자열의 맨 앞 뒤에 올 수 없습니다. 다시 입력해 주세요.");
+                .hasMessage(INVALID_ORDER.toString());
     }
 
     @DisplayName("연속된 구분자가 존재하면 예외를 발생시킨다.")
@@ -32,7 +33,7 @@ class OrderFormatValidatorTest {
     void consecutiveDelimiterThrowException() {
         assertThatThrownBy(() -> orderFormatValidator.validateDelimiterFormat("티본스테이크-1,바비큐립-1,,초코케이크-2"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 구분자가 연속될 수 없습니다. 다시 입력해 주세요.");
+                .hasMessage(INVALID_ORDER.toString());
     }
 
     @DisplayName("문자열-숫자 형식의 메뉴 구성이 아니면 예외를 발생시킨다.")
@@ -41,7 +42,7 @@ class OrderFormatValidatorTest {
     void wrongOrderFormatThrowException(String input) {
         assertThatThrownBy(() -> orderFormatValidator.validateDelimiterFormat(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 메뉴이름-메뉴개수의 형식으로 입력해야합니다. 다시 입력해 주세요.");
+                .hasMessage(INVALID_ORDER.toString());
     }
 
     @DisplayName("문자열-숫자 형식의 메뉴 구성이면 예외를 발생시키지 않는다.")
