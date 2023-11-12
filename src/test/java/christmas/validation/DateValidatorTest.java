@@ -1,5 +1,6 @@
 package christmas.validation;
 
+import static christmas.exception.ErrorMessage.ONLY_DATE_ALLOWED;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -22,7 +23,7 @@ class DateValidatorTest {
     void IsEmptyThrowException() {
         assertThatThrownBy(() -> dateValidator.validateVisitDate(""))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 빈 문자열을 입력할 수 없습니다. 다시 입력해 주세요.");
+                .hasMessage(ONLY_DATE_ALLOWED.toString());
     }
 
     @DisplayName("공백으로만 구성된 문자열이면 예외가 발생한다.")
@@ -30,7 +31,7 @@ class DateValidatorTest {
     void isBlankThrowException() {
         assertThatThrownBy(() -> dateValidator.validateVisitDate("  "))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 공백을 입력할 수 없습니다. 다시 입력해 주세요.");
+                .hasMessage(ONLY_DATE_ALLOWED.toString());
     }
 
     @DisplayName("숫자가 아니면 예외가 발생한다.")
@@ -39,7 +40,7 @@ class DateValidatorTest {
     void IsNotNumberThrowException(String input) {
         assertThatThrownBy(() -> dateValidator.validateVisitDate(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 숫자만 입력할 수 있습니다. 다시 입력해주세요.");
+                .hasMessage(ONLY_DATE_ALLOWED.toString());
     }
 
     @DisplayName("1과 31사이의 숫자가 아니라면 예외가 발생한다.")
@@ -48,7 +49,7 @@ class DateValidatorTest {
     void isNotInRangeThrowException(String input) {
         assertThatThrownBy(() -> dateValidator.validateVisitDate(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+                .hasMessage(ONLY_DATE_ALLOWED.toString());
     }
 
 }
