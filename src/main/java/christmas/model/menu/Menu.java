@@ -2,6 +2,7 @@ package christmas.model.menu;
 
 import static christmas.exception.ErrorMessage.INVALID_ORDER;
 
+import christmas.exception.ExceptionWithMessage;
 import java.util.Arrays;
 
 public enum Menu {
@@ -34,7 +35,7 @@ public enum Menu {
         return Arrays.stream(Menu.values())
                 .filter(menu -> menu.name.equals(menuName))
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException(INVALID_ORDER.toString()));
+                .orElseThrow(() -> new ExceptionWithMessage(INVALID_ORDER.toString()));
     }
 
     public Integer getPrice() {
