@@ -5,9 +5,19 @@ import java.time.LocalDate;
 
 public class ChristmasDiscountPolicy implements EventPolicy {
 
+    private static ChristmasDiscountPolicy eventPolicy;
+
     private static final Integer START_DISCOUNT_PRICE = 1000;
     private static final Integer PRICE_INCREMENT = 100;
     private static final LocalDate END_DATE = LocalDate.of(2023, 12, 25);
+
+    private ChristmasDiscountPolicy() {
+    }
+
+    public static ChristmasDiscountPolicy getInstance() {
+        if (eventPolicy == null) eventPolicy = new ChristmasDiscountPolicy();
+        return eventPolicy;
+    }
 
     @Override
     public Integer calculateDiscountPrice(Orders orders) {

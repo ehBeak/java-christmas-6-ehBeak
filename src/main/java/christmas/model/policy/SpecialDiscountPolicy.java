@@ -5,7 +5,16 @@ import java.time.DayOfWeek;
 
 public class SpecialDiscountPolicy implements EventPolicy {
 
+    private static SpecialDiscountPolicy eventPolicy;
     private static final Integer DISCOUNT_PRICE = 1000;
+
+    private SpecialDiscountPolicy() {
+    }
+
+    public static SpecialDiscountPolicy getInstance() {
+        if (eventPolicy == null) eventPolicy = new SpecialDiscountPolicy();
+        return eventPolicy;
+    }
 
     @Override
     public Integer calculateDiscountPrice(Orders orders) {

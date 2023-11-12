@@ -16,7 +16,7 @@ class FreebiesEventPolicyTest {
 
     @BeforeEach
     void initFreebiesEventPolicy() {
-        this.freebiesEventPolicy = new FreebiesEventPolicy();
+        this.freebiesEventPolicy = FreebiesEventPolicy.getInstance();
     }
 
     @DisplayName("이벤트 기간에 해당되지 않는 주문이면 0원 반환")

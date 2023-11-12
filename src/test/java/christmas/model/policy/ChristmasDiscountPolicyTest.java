@@ -18,7 +18,7 @@ class ChristmasDiscountPolicyTest {
 
     @BeforeEach
     void initChristmasDiscountPolicy() {
-        this.christmasDiscountPolicy = new ChristmasDiscountPolicy();
+        this.christmasDiscountPolicy = ChristmasDiscountPolicy.getInstance();
     }
 
     @DisplayName("주문 일이 크리스마스 이벤트 기간 내에 없다면 0원을 반환한다.")

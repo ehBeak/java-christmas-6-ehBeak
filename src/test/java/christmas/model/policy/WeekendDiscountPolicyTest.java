@@ -18,7 +18,7 @@ class WeekendDiscountPolicyTest {
 
     @BeforeEach
     void initWeekDayDiscountPolicy() {
-        this.weekendDiscountPolicy = new WeekendDiscountPolicy();
+        this.weekendDiscountPolicy = WeekendDiscountPolicy.getInstance();
     }
 
     @DisplayName("주문 날짜가 주말이 아니거나 이벤트 기간이 아니면 0원을 반환한다")
