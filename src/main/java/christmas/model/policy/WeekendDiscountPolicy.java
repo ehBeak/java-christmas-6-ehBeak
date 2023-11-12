@@ -16,7 +16,9 @@ public class WeekendDiscountPolicy implements EventPolicy {
     }
 
     public static WeekendDiscountPolicy getInstance() {
-        if (eventPolicy == null) eventPolicy = new WeekendDiscountPolicy();
+        if (eventPolicy == null) {
+            eventPolicy = new WeekendDiscountPolicy();
+        }
         return eventPolicy;
     }
 

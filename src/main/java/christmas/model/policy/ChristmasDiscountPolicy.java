@@ -15,7 +15,9 @@ public class ChristmasDiscountPolicy implements EventPolicy {
     }
 
     public static ChristmasDiscountPolicy getInstance() {
-        if (eventPolicy == null) eventPolicy = new ChristmasDiscountPolicy();
+        if (eventPolicy == null) {
+            eventPolicy = new ChristmasDiscountPolicy();
+        }
         return eventPolicy;
     }
 

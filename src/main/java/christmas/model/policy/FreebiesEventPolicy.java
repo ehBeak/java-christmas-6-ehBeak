@@ -12,7 +12,9 @@ public class FreebiesEventPolicy implements EventPolicy {
     }
 
     public static FreebiesEventPolicy getInstance() {
-        if (eventPolicy == null) eventPolicy = new FreebiesEventPolicy();
+        if (eventPolicy == null) {
+            eventPolicy = new FreebiesEventPolicy();
+        }
         return eventPolicy;
     }
 

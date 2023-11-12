@@ -12,7 +12,9 @@ public class SpecialDiscountPolicy implements EventPolicy {
     }
 
     public static SpecialDiscountPolicy getInstance() {
-        if (eventPolicy == null) eventPolicy = new SpecialDiscountPolicy();
+        if (eventPolicy == null) {
+            eventPolicy = new SpecialDiscountPolicy();
+        }
         return eventPolicy;
     }
 
