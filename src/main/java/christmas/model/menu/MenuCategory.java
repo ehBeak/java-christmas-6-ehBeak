@@ -17,16 +17,14 @@ import java.util.List;
 
 public enum MenuCategory {
 
-    APPETIZER("appetizer", List.of(BUTTON_MUSHROOM_SOUP, TAPAS, CAESAR_SALAD)),
-    MAIN("main", List.of(T_BONE_STEAK, BARBECUE_PASTA, SEAFOOD_PASTA, CHRISTMAS_PASTA)),
-    DESSERT("dessert", List.of(CHOCOLATE_CAKE, ICE_CREAM)),
-    BEVERAGE("beverage", List.of(ZERO_COLA, RED_WINE, CHAMPAGNE));
+    APPETIZER(List.of(BUTTON_MUSHROOM_SOUP, TAPAS, CAESAR_SALAD)),
+    MAIN(List.of(T_BONE_STEAK, BARBECUE_PASTA, SEAFOOD_PASTA, CHRISTMAS_PASTA)),
+    DESSERT(List.of(CHOCOLATE_CAKE, ICE_CREAM)),
+    BEVERAGE(List.of(ZERO_COLA, RED_WINE, CHAMPAGNE));
 
-    private final String category;
     private final List<Menu> menus;
 
-    MenuCategory(String category, List<Menu> menus) {
-        this.category = category;
+    MenuCategory(List<Menu> menus) {
         this.menus = menus;
     }
 
