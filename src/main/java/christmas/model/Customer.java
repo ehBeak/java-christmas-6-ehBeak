@@ -3,6 +3,7 @@ package christmas.model;
 import static christmas.model.EventPolicyCategory.FREEBIES_EVENT;
 
 import christmas.model.menu.Menu;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -19,14 +20,12 @@ public class Customer {
     }
 
     private Set<EventPolicyCategory> createBenefits(Orders orders) {
-        Set<EventPolicyCategory> categories = new HashSet<>();
-        for (EventPolicyCategory eventCategory : EventPolicyCategory.values()) {
-            Integer discountPrice = eventCategory.calculateDiscountPrice(orders);
-            if (discountPrice != 0) {
-                categories.add(eventCategory);
-            }
+        if (orders.calculateTotalPrice() < 10000) {
+            return new HashSet<>();
         }
-        return categories;
+        return Arrays.stream(EventPolicyCategory.values())
+                .filter(eventCategory -> eventCategory.calculateDiscountPrice(orders) != 0)
+                .collect(Collectors.toSet());
     }
 
     public Integer getBenefitPrice() {
