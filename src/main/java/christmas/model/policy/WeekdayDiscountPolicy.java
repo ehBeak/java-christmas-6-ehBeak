@@ -3,7 +3,7 @@ package christmas.model.policy;
 import christmas.model.Orders;
 import java.time.DayOfWeek;
 
-public class WeekdayDiscountPolicy implements EventPolicy{
+public class WeekdayDiscountPolicy implements EventPolicy {
 
     private static final Integer DISCOUNT_PRICE_PER_DESSERT = 2023;
 

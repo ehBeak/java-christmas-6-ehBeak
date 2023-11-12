@@ -3,7 +3,7 @@ package christmas.model.policy;
 import christmas.model.Orders;
 import christmas.model.menu.Menu;
 
-public class FreebiesEventPolicy implements EventPolicy{
+public class FreebiesEventPolicy implements EventPolicy {
 
     private static final Integer DISCOUNT_THRESHOLD_PRICE = 120000;
 

@@ -3,7 +3,7 @@ package christmas.model.policy;
 import christmas.model.Orders;
 import java.time.LocalDate;
 
-public class ChristmasDiscountPolicy implements EventPolicy{
+public class ChristmasDiscountPolicy implements EventPolicy {
 
     private static final Integer START_DISCOUNT_PRICE = 1000;
     private static final Integer PRICE_INCREMENT = 100;
