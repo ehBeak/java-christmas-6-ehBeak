@@ -13,6 +13,8 @@ import static christmas.model.menu.Menu.TAPAS;
 import static christmas.model.menu.Menu.T_BONE_STEAK;
 import static christmas.model.menu.Menu.ZERO_COLA;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public enum MenuCategory {
@@ -20,7 +22,8 @@ public enum MenuCategory {
     APPETIZER(List.of(BUTTON_MUSHROOM_SOUP, TAPAS, CAESAR_SALAD)),
     MAIN(List.of(T_BONE_STEAK, BARBECUE_PASTA, SEAFOOD_PASTA, CHRISTMAS_PASTA)),
     DESSERT(List.of(CHOCOLATE_CAKE, ICE_CREAM)),
-    BEVERAGE(List.of(ZERO_COLA, RED_WINE, CHAMPAGNE));
+    BEVERAGE(List.of(ZERO_COLA, RED_WINE, CHAMPAGNE)),
+    NONE(Collections.EMPTY_LIST);
 
     private final List<Menu> menus;
 
@@ -28,8 +31,15 @@ public enum MenuCategory {
         this.menus = menus;
     }
 
-    public static Boolean isMenuInCategory(Menu orderMenu, MenuCategory category) {
-        return category.menus.stream()
-                .anyMatch(menu -> menu.equals(orderMenu));
+    public static MenuCategory findByMenu(Menu menu) {
+        return Arrays.stream(MenuCategory.values())
+                .filter(menus -> menus.hasMenuCategory(menu))
+                .findAny()
+                .orElse(NONE);
+    }
+
+    public boolean hasMenuCategory(Menu menuType) {
+        return menus.stream()
+                .anyMatch(menu -> menu == menuType);
     }
 }

@@ -33,13 +33,10 @@ public class Orders {
     }
 
     public Integer countMenuOnMenuCategory(MenuCategory menuCategory) {
-        Integer menuCount = 0;
-        for (Menu menu : orders.keySet()) {
-            if (MenuCategory.isMenuInCategory(menu, menuCategory)) {
-                menuCount += orders.get(menu);
-            }
-        }
-        return menuCount;
+        return orders.keySet().stream()
+                .filter(menu -> MenuCategory.findByMenu(menu) == menuCategory)
+                .mapToInt(orders::get)
+                .sum();
     }
 
     public Map<Menu, Integer> getOrders() {
@@ -80,12 +77,9 @@ public class Orders {
     }
 
     private void validateOnlyBeverage(Map<Menu, Integer> orders) {
-        for (Menu menu : orders.keySet()) {
-            if (!MenuCategory.isMenuInCategory(menu, BEVERAGE)) {
-                return;
-            }
+        if (orders.keySet().stream().allMatch(menu -> MenuCategory.findByMenu(menu) == BEVERAGE)) {
+            throw new ExceptionWithMessage(ONLY_BEVERAGE_NOT_ALLOWED.toString());
         }
-        throw new ExceptionWithMessage(ONLY_BEVERAGE_NOT_ALLOWED.toString());
     }
 
     public Boolean notBefore(LocalDate eventStartDate) {
@@ -104,7 +98,7 @@ public class Orders {
         return orderDate.getDayOfWeek();
     }
 
-    public Boolean IsOrderDateChristmas() {
+    public Boolean isOrderDateChristmas() {
         return orderDate.isEqual(LocalDate.of(2023, 12, 25));
     }
 

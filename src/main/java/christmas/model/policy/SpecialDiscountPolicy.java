@@ -28,6 +28,6 @@ public class SpecialDiscountPolicy implements EventPolicy {
 
     private Boolean isSpecialDay(Orders orders) {
         DayOfWeek dayOfWeek = orders.getDayOfWeek();
-        return dayOfWeek.equals(DayOfWeek.SUNDAY) || orders.IsOrderDateChristmas();
+        return dayOfWeek.equals(DayOfWeek.SUNDAY) || orders.isOrderDateChristmas();
     }
 }
