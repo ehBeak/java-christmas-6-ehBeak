@@ -41,11 +41,29 @@ class CustomerTest {
                 Map.entry("특별 할인", -1000));
     }
 
+    @DisplayName("주문 금액이 10000원 이하면 할인 혜택을 받을 수 없다.")
+    @Test
+    void orderTotalPriceUnderTenThousandNoBenefits() {
+        LocalDate orderDate = LocalDate.of(2023, 12, 3);
+        Orders validOrders = createOrderTotalPriceUnderTenThousand(orderDate);
+        Customer customer = new Customer(validOrders);
+
+        Map<String, Integer> benefitDetails = customer.getBenefitDetails();
+
+        assertThat(benefitDetails).isEmpty();
+    }
+
     Orders createValidOrders(LocalDate orderDate) {
         Map<Menu, Integer> orderMenus = new EnumMap<>(Menu.class);
         orderMenus.put(BUTTON_MUSHROOM_SOUP, 2);
         orderMenus.put(RED_WINE, 1);
         orderMenus.put(T_BONE_STEAK, 1);
+        return new Orders(orderMenus, orderDate);
+    }
+
+    Orders createOrderTotalPriceUnderTenThousand(LocalDate orderDate) {
+        Map<Menu, Integer> orderMenus = new EnumMap<>(Menu.class);
+        orderMenus.put(BUTTON_MUSHROOM_SOUP, 1);
         return new Orders(orderMenus, orderDate);
     }
 }
