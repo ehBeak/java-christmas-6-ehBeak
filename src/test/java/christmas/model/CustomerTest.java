@@ -35,7 +35,7 @@ class CustomerTest {
 
         Integer totalDiscountPrice = customer.getExpectedPayment();
 
-        assertThat(totalDiscountPrice).isEqualTo(-2200);
+        assertThat(totalDiscountPrice).isEqualTo(124800);
     }
 
     @DisplayName("혜택을 받는 이벤트 명과 할인 금액을 반환한다.")
@@ -63,6 +63,18 @@ class CustomerTest {
         Map<String, Integer> benefitDetails = customer.getBenefitDetails();
 
         assertThat(benefitDetails).isEmpty();
+    }
+
+    @DisplayName("각 할인 가격에 따라 배지가 지정된다.")
+    @Test
+    void getEventBadge() {
+        LocalDate orderDate = LocalDate.of(2023, 12, 3);
+        Orders validOrders = createValidOrders(orderDate);
+        Customer customer = new Customer(validOrders);
+
+        Badge eventBadge = customer.getEventBadge();
+
+        assertThat(eventBadge).isEqualTo(Badge.SANTA);
     }
 
     Orders createValidOrders(LocalDate orderDate) {
