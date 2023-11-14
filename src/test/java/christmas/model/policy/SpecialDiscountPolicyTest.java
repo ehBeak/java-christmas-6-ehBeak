@@ -26,7 +26,7 @@ class SpecialDiscountPolicyTest {
     void orderDateNotWeekDayReturnZero(int month, int day) {
         Orders orders = createOrder(LocalDate.of(2023, month, day));
 
-        Integer discountPrice = specialDiscountPolicy.calculateDiscountPrice(orders);
+        Integer discountPrice = specialDiscountPolicy.calculateBenefitPrice(orders);
 
         assertThat(discountPrice).isZero();
     }
@@ -37,7 +37,7 @@ class SpecialDiscountPolicyTest {
     void orderDateInEventPeriodReturnDiscountPrice(int month, int day) {
         Orders orders = createOrder(LocalDate.of(2023, month, day));
 
-        Integer discountPrice = specialDiscountPolicy.calculateDiscountPrice(orders);
+        Integer discountPrice = specialDiscountPolicy.calculateBenefitPrice(orders);
 
         assertThat(discountPrice).isEqualTo(1000);
     }

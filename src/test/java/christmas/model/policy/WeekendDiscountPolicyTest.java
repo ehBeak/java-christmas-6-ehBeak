@@ -27,7 +27,7 @@ class WeekendDiscountPolicyTest {
     void orderDateNotWeekDayReturnZero(int month, int day) {
         Orders orders = createOrdersIncludeMain(LocalDate.of(2023, month, day));
 
-        Integer discountPrice = weekendDiscountPolicy.calculateDiscountPrice(orders);
+        Integer discountPrice = weekendDiscountPolicy.calculateBenefitPrice(orders);
 
         assertThat(discountPrice).isZero();
     }
@@ -37,7 +37,7 @@ class WeekendDiscountPolicyTest {
     void orderDateInEventPeriodReturnDiscountPrice() {
         Orders orders = createOrdersIncludeMain(LocalDate.of(2023, 12, 8));
 
-        Integer discountPrice = weekendDiscountPolicy.calculateDiscountPrice(orders);
+        Integer discountPrice = weekendDiscountPolicy.calculateBenefitPrice(orders);
 
         assertThat(discountPrice).isEqualTo(2 * 2023);
     }
@@ -47,7 +47,7 @@ class WeekendDiscountPolicyTest {
     void orderDateInEventPeriodNotDessertReturnZero() {
         Orders orders = createOrdersNotIncludeMain(LocalDate.of(2023, 12, 5));
 
-        Integer discountPrice = weekendDiscountPolicy.calculateDiscountPrice(orders);
+        Integer discountPrice = weekendDiscountPolicy.calculateBenefitPrice(orders);
 
         assertThat(discountPrice).isZero();
 

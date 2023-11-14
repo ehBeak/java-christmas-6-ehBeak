@@ -9,7 +9,7 @@ public interface DiscountPolicy {
     LocalDate START_DATE = LocalDate.of(2023, 12, 1);
     LocalDate END_DATE = LocalDate.of(2023, 12, 31);
 
-    Integer calculateDiscountPrice(Orders orders);
+    Integer calculateBenefitPrice(Orders orders);
 
     default Boolean isEventPeriod(Orders orders) {
         return orders.notBefore(START_DATE) && orders.notAfter(END_DATE);

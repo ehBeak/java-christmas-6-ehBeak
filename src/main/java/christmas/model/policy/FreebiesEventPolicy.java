@@ -21,7 +21,7 @@ public class FreebiesEventPolicy implements FreebiesEvent {
     }
 
     @Override
-    public Integer calculateDiscountPrice(Orders orders) {
+    public Integer calculateBenefitPrice(Orders orders) {
         if (isEventPeriod(orders) && satisfiesDiscountConditions(orders)) {
             return Menu.CHAMPAGNE.getPrice();
         }

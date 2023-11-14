@@ -26,7 +26,7 @@ class ChristmasDiscountPolicyTest {
     void orderDateNotInChristmasPeriodReturnZero() {
         Orders orders = createOrders(LocalDate.of(2023, 12, 26));
 
-        Integer discountPrice = christmasDiscountPolicy.calculateDiscountPrice(orders);
+        Integer discountPrice = christmasDiscountPolicy.calculateBenefitPrice(orders);
 
         assertThat(discountPrice).isZero();
     }
@@ -42,7 +42,7 @@ class ChristmasDiscountPolicyTest {
     void orderDateInEventPeriodReturnDiscountPrice(int dayOfMonth, Integer expectedDiscountPrice) {
         Orders orders = createOrders(LocalDate.of(2023, 12, dayOfMonth));
 
-        Integer discountPrice = christmasDiscountPolicy.calculateDiscountPrice(orders);
+        Integer discountPrice = christmasDiscountPolicy.calculateBenefitPrice(orders);
 
         assertThat(discountPrice).isEqualTo(expectedDiscountPrice);
     }

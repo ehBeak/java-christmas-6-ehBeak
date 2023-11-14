@@ -19,7 +19,7 @@ public class SpecialDiscountPolicy implements DiscountPolicy {
     }
 
     @Override
-    public Integer calculateDiscountPrice(Orders orders) {
+    public Integer calculateBenefitPrice(Orders orders) {
         if (isEventPeriod(orders) && isSpecialDay(orders)) {
             return DISCOUNT_PRICE;
         }

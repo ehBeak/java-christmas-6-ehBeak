@@ -24,20 +24,20 @@ public class Customer {
             return new HashSet<>();
         }
         return Arrays.stream(EventPolicyCategory.values())
-                .filter(eventCategory -> eventCategory.calculateDiscountPrice(orders) != 0)
+                .filter(eventCategory -> eventCategory.calculateBenefitPrice(orders) != 0)
                 .collect(Collectors.toSet());
     }
 
     public Integer getBenefitPrice() {
         return benefitEvents.stream()
-                .mapToInt(event -> event.calculateDiscountPrice(orders))
+                .mapToInt(event -> event.calculateBenefitPrice(orders))
                 .sum();
     }
 
     public Map<String, Integer> getBenefitDetails() {
         return benefitEvents.stream()
                 .collect(Collectors.toMap(EventPolicyCategory::getEventName,
-                        eventPolicyCategory -> eventPolicyCategory.calculateDiscountPrice(orders)));
+                        eventPolicyCategory -> eventPolicyCategory.calculateBenefitPrice(orders)));
     }
 
     public Integer getExpectedPayment() {
@@ -59,7 +59,7 @@ public class Customer {
 
     private Integer getDiscountPrice() {
         if (isEligibleEvent(FREEBIES_EVENT)) {
-            return getBenefitPrice() - FREEBIES_EVENT.calculateDiscountPrice(orders);
+            return getBenefitPrice() - FREEBIES_EVENT.calculateBenefitPrice(orders);
         }
         return getBenefitPrice();
     }

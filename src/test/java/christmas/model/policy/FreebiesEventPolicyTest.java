@@ -24,7 +24,7 @@ class FreebiesEventPolicyTest {
     void calculateDiscountPriceNotEventPeriod() {
         Orders orders = createOverThresholdPrice(LocalDate.of(2023, 11, 30));
 
-        Integer discountPrice = freebiesEventPolicy.calculateDiscountPrice(orders);
+        Integer discountPrice = freebiesEventPolicy.calculateBenefitPrice(orders);
 
         assertThat(discountPrice).isZero();
     }
@@ -34,7 +34,7 @@ class FreebiesEventPolicyTest {
     void calculateDiscountPriceNotOverThresholdPrice() {
         Orders orders = createNotOverThresholdPrice(LocalDate.of(2023, 12, 12));
 
-        Integer discountPrice = freebiesEventPolicy.calculateDiscountPrice(orders);
+        Integer discountPrice = freebiesEventPolicy.calculateBenefitPrice(orders);
 
         assertThat(discountPrice).isZero();
     }
@@ -44,7 +44,7 @@ class FreebiesEventPolicyTest {
     void calculateDiscountPrice() {
         Orders orders = createOverThresholdPrice(LocalDate.of(2023, 12, 12));
 
-        Integer discountPrice = freebiesEventPolicy.calculateDiscountPrice(orders);
+        Integer discountPrice = freebiesEventPolicy.calculateBenefitPrice(orders);
 
         assertThat(discountPrice).isEqualTo(Menu.CHAMPAGNE.getPrice());
     }

@@ -27,8 +27,8 @@ public enum EventPolicyCategory {
         this.discountPolicy = eventPolicy;
     }
 
-    public Integer calculateDiscountPrice(Orders orders) {
-        return discountPolicy.calculateDiscountPrice(orders) * -1;
+    public Integer calculateBenefitPrice(Orders orders) {
+        return discountPolicy.calculateBenefitPrice(orders) * -1;
     }
 
     public String getEventName() {

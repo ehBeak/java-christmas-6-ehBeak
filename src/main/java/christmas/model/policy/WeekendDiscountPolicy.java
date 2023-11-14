@@ -24,7 +24,7 @@ public class WeekendDiscountPolicy implements DiscountPolicy {
     }
 
     @Override
-    public Integer calculateDiscountPrice(Orders orders) {
+    public Integer calculateBenefitPrice(Orders orders) {
         int totalDiscount = 0;
         if (isEventPeriod(orders) && isWeekend(orders)) {
             totalDiscount += orders.countMenuOnMenuCategory(MAIN) * DISCOUNT_PRICE_PER_MAIN;

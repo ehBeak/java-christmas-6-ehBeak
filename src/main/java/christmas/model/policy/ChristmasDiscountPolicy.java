@@ -22,7 +22,7 @@ public class ChristmasDiscountPolicy implements DiscountPolicy {
     }
 
     @Override
-    public Integer calculateDiscountPrice(Orders orders) {
+    public Integer calculateBenefitPrice(Orders orders) {
         if (isEventPeriod(orders)) {
             return START_DISCOUNT_PRICE + orders.getElapsedTime(START_DATE) * PRICE_INCREMENT;
         }
