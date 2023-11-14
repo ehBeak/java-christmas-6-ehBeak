@@ -25,11 +25,13 @@ public class Orders {
     }
 
     public Integer calculateTotalPrice() {
-        int totalPrice = 0;
-        for (Menu menu : orders.keySet()) {
-            totalPrice += orders.get(menu) * menu.getPrice();
-        }
-        return totalPrice;
+        return orders.keySet().stream()
+                .mapToInt(this::calculateOrderMenuPrice)
+                .sum();
+    }
+
+    private Integer calculateOrderMenuPrice(Menu menu) {
+        return orders.get(menu) * menu.getPrice();
     }
 
     public Integer countMenuOnMenuCategory(MenuCategory menuCategory) {
