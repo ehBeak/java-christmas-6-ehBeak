@@ -1,4 +1,4 @@
-package christmas.validation;
+package christmas.util.validation;
 
 import static christmas.exception.ErrorMessage.ONLY_DATE_ALLOWED;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;

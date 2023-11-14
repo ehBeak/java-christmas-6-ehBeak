@@ -1,4 +1,4 @@
-package christmas.validation;
+package christmas.util.validation;
 
 import static christmas.exception.ErrorMessage.INVALID_ORDER;
 import static org.assertj.core.api.Assertions.assertThatNoException;
