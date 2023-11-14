@@ -1,7 +1,5 @@
 package christmas.model.eventPolicy;
 
-import static christmas.model.menu.MenuCategory.DESSERT;
-
 import christmas.model.Orders;
 import christmas.model.menu.MenuCategory;
 
