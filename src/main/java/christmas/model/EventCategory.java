@@ -5,6 +5,7 @@ import static christmas.model.DayOfWeekCategory.WEEK_DAYS;
 import static christmas.model.menu.MenuCategory.*;
 
 import christmas.exception.ExceptionWithMessage;
+import christmas.model.eventPolicy.DiscountPolicy;
 import christmas.model.eventPolicy.EventPolicy;
 import christmas.model.eventPolicy.FreebiesPolicy;
 import christmas.model.eventPolicy.MenuDiscountPolicy;
@@ -51,6 +52,13 @@ public enum EventCategory {
     public Integer calculateBenefitPrice(Orders orders) {
         if (eventPeriod.isEventPeriod(orders) && eventCondition.satisfyEventCondition(orders)) {
             return benefitPolicy.calculateBenefitPrice(orders) * -1;
+        }
+        return 0;
+    }
+
+    public Integer calculateDiscountPrice(Orders orders) {
+        if (benefitPolicy instanceof DiscountPolicy) {
+            return ((DiscountPolicy) benefitPolicy).calculateDiscountPrice(orders) * -1;
         }
         return 0;
     }

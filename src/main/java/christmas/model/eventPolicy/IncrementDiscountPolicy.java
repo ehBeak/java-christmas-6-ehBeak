@@ -3,7 +3,7 @@ package christmas.model.eventPolicy;
 import christmas.model.Orders;
 import java.time.LocalDate;
 
-public class IncrementDiscountPolicy implements EventPolicy {
+public class IncrementDiscountPolicy implements DiscountPolicy {
 
     private static final Integer START_DISCOUNT_PRICE = 1000;
     private static final Integer PRICE_INCREMENT = 100;
@@ -13,5 +13,10 @@ public class IncrementDiscountPolicy implements EventPolicy {
     @Override
     public Integer calculateBenefitPrice(Orders orders) {
         return START_DISCOUNT_PRICE + orders.getElapsedTime(START_DATE) * PRICE_INCREMENT;
+    }
+
+    @Override
+    public Integer calculateDiscountPrice(Orders orders) {
+        return calculateBenefitPrice(orders);
     }
 }

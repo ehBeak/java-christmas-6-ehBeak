@@ -11,14 +11,14 @@ import java.util.stream.Collectors;
 public class Customer {
 
     private final Orders orders;
-    private Set<EventCategory> eventCategories;
+    private final Set<EventCategory> eventCategories;
 
     public Customer(Orders orders) {
         this.orders = orders;
-        this.eventCategories = createBenefits1(orders);
+        this.eventCategories = createBenefits(orders);
     }
 
-    private Set<EventCategory> createBenefits1(Orders orders) {
+    private Set<EventCategory> createBenefits(Orders orders) {
         if (orders.calculateTotalPrice() < 10000) {
             return new HashSet<>();
         }
@@ -45,11 +45,8 @@ public class Customer {
 
     public Map<String, Integer> getFreebies() {
         Map<Menu, Integer> freebies = EventCategory.FREEBIES_EVENT.getFreebies(orders);
-        if (isEligibleEvent(EventCategory.FREEBIES_EVENT)) {
-            return freebies.keySet().stream()
-                    .collect(Collectors.toMap(Menu::getName, Menu::getPrice));
-        }
-        return Map.of();
+        return freebies.keySet().stream()
+                .collect(Collectors.toMap(Menu::getName, Menu::getPrice));
     }
 
     public Badge getEventBadge() {
@@ -57,13 +54,8 @@ public class Customer {
     }
 
     private Integer getDiscountPrice() {
-        if (isEligibleEvent(EventCategory.FREEBIES_EVENT)) {
-            return getBenefitPrice() - EventCategory.FREEBIES_EVENT.calculateBenefitPrice(orders);
-        }
-        return getBenefitPrice();
-    }
-
-    private Boolean isEligibleEvent(EventCategory eventPolicyCategory) {
-        return eventCategories.contains(eventPolicyCategory);
+        return eventCategories.stream()
+                .mapToInt(event -> event.calculateDiscountPrice(orders))
+                .sum();
     }
 }

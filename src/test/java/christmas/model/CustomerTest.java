@@ -14,9 +14,9 @@ import org.junit.jupiter.api.Test;
 
 class CustomerTest {
 
-    @DisplayName("사용자의 전체 할인 금액을 반환한다.")
+    @DisplayName("사용자의 전체 혜택 금액을 반환한다.")
     @Test
-    void getTotalDiscountPrice() {
+    void getTotalBenefitPrice() {
         LocalDate orderDate = LocalDate.of(2023, 12, 3);
         Orders validOrders = createValidOrders(orderDate);
         Customer customer = new Customer(validOrders);
@@ -24,6 +24,18 @@ class CustomerTest {
         Integer totalDiscountPrice = customer.getBenefitPrice();
 
         assertThat(totalDiscountPrice).isEqualTo(-27200);
+    }
+
+    @DisplayName("사용자의 전체 할인 금액을 반환한다.")
+    @Test
+    void getTotalDiscountPrice() {
+        LocalDate orderDate = LocalDate.of(2023, 12, 3);
+        Orders validOrders = createValidOrders(orderDate);
+        Customer customer = new Customer(validOrders);
+
+        Integer totalDiscountPrice = customer.getExpectedPayment();
+
+        assertThat(totalDiscountPrice).isEqualTo(-2200);
     }
 
     @DisplayName("혜택을 받는 이벤트 명과 할인 금액을 반환한다.")

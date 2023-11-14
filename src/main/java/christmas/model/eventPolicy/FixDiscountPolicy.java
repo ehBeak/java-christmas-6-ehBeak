@@ -1,9 +1,8 @@
 package christmas.model.eventPolicy;
 
 import christmas.model.Orders;
-import christmas.model.eventPolicy.EventPolicy;
 
-public class FixDiscountPolicy implements EventPolicy {
+public class FixDiscountPolicy implements DiscountPolicy {
 
     private static final Integer DISCOUNT_PRICE = 1000;
 
@@ -12,4 +11,8 @@ public class FixDiscountPolicy implements EventPolicy {
         return DISCOUNT_PRICE;
     }
 
+    @Override
+    public Integer calculateDiscountPrice(Orders orders) {
+        return calculateBenefitPrice(orders);
+    }
 }
