@@ -50,7 +50,7 @@ public class Customer {
     }
 
     public Badge getEventBadge() {
-        return Badge.valueOf(getDiscountPrice());
+        return Badge.valueOf(getBenefitPrice());
     }
 
     private Integer getDiscountPrice() {
