@@ -1,11 +1,15 @@
 package christmas.model;
 
+import christmas.exception.ExceptionWithMessage;
+import christmas.model.menu.Menu;
 import christmas.model.policy.ChristmasDiscountPolicy;
 import christmas.model.policy.EventPolicy;
+import christmas.model.policy.FreebiesEvent;
 import christmas.model.policy.FreebiesEventPolicy;
 import christmas.model.policy.SpecialDiscountPolicy;
 import christmas.model.policy.WeekdayDiscountPolicy;
 import christmas.model.policy.WeekendDiscountPolicy;
+import java.util.Map;
 
 public enum EventPolicyCategory {
 
@@ -31,4 +35,16 @@ public enum EventPolicyCategory {
         return eventName;
     }
 
+    public Map<Menu, Integer> getFreebies(Orders orders) {
+        FreebiesEvent freebiesPolicy = getFreebiesPolicy();
+        return freebiesPolicy.getFreebies(orders);
+    }
+
+    private FreebiesEvent getFreebiesPolicy() {
+        try {
+            return (FreebiesEvent) eventPolicy;
+        } catch (ClassCastException exception) {
+            throw new ExceptionWithMessage("[ERROR] 증정 할인 이벤트가 아닙니다.");
+        }
+    }
 }

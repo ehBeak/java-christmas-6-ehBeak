@@ -29,11 +29,9 @@ public class Customer {
     }
 
     public Integer getBenefitPrice() {
-        int totalDiscountPrice = 0;
-        for (EventPolicyCategory event : benefitEvents) {
-            totalDiscountPrice += event.calculateDiscountPrice(orders);
-        }
-        return totalDiscountPrice;
+        return benefitEvents.stream()
+                .mapToInt(event -> event.calculateDiscountPrice(orders))
+                .sum();
     }
 
     public Map<String, Integer> getBenefitDetails() {
@@ -47,8 +45,10 @@ public class Customer {
     }
 
     public Map<String, Integer> getFreebies() {
+        Map<Menu, Integer> freebies = FREEBIES_EVENT.getFreebies(orders);
         if (isEligibleEvent(FREEBIES_EVENT)) {
-            return Map.of(Menu.CHAMPAGNE.getName(), 1);
+            return freebies.keySet().stream()
+                    .collect(Collectors.toMap(Menu::getName, Menu::getPrice));
         }
         return Map.of();
     }
