@@ -3,6 +3,7 @@ package christmas.model.policy;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import christmas.model.Orders;
+import christmas.model.eventPolicy.FreebiesEventPolicy;
 import christmas.model.menu.Menu;
 import java.time.LocalDate;
 import java.util.EnumMap;
@@ -16,7 +17,7 @@ class FreebiesEventPolicyTest {
 
     @BeforeEach
     void initFreebiesEventPolicy() {
-        this.freebiesEventPolicy = FreebiesEventPolicy.getInstance();
+        this.freebiesEventPolicy = null;
     }
 
     @DisplayName("이벤트 기간에 해당되지 않는 주문이면 0원 반환")

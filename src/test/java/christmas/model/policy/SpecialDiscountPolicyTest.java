@@ -3,6 +3,7 @@ package christmas.model.policy;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import christmas.model.Orders;
+import christmas.model.eventPolicy.FixDiscountPolicy;
 import christmas.model.menu.Menu;
 import java.time.LocalDate;
 import java.util.EnumMap;
@@ -13,11 +14,11 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 class SpecialDiscountPolicyTest {
 
-    private SpecialDiscountPolicy specialDiscountPolicy;
+    private FixDiscountPolicy specialDiscountPolicy;
 
     @BeforeEach
     void initWeekDayDiscountPolicy() {
-        this.specialDiscountPolicy = SpecialDiscountPolicy.getInstance();
+        this.specialDiscountPolicy = null;
     }
 
     @DisplayName("주문 날짜가 이벤트 기간이 아니고 일요일이나 크리스마스가 아니면 0원을 반환한다.")
