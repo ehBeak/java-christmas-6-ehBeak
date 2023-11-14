@@ -3,7 +3,7 @@ package christmas.model.policy;
 import christmas.model.Orders;
 import java.time.LocalDate;
 
-public class ChristmasDiscountPolicy implements EventPolicy {
+public class ChristmasDiscountPolicy implements DiscountPolicy {
 
     private static ChristmasDiscountPolicy eventPolicy;
 

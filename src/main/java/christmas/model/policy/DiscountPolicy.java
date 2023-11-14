@@ -4,7 +4,7 @@ import christmas.model.Orders;
 import java.time.LocalDate;
 
 @FunctionalInterface
-public interface EventPolicy {
+public interface DiscountPolicy {
 
     LocalDate START_DATE = LocalDate.of(2023, 12, 1);
     LocalDate END_DATE = LocalDate.of(2023, 12, 31);

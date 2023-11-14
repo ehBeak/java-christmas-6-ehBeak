@@ -7,7 +7,7 @@ import christmas.model.DayOfWeekCategory;
 import christmas.model.Orders;
 import java.time.DayOfWeek;
 
-public class WeekendDiscountPolicy implements EventPolicy {
+public class WeekendDiscountPolicy implements DiscountPolicy {
 
     private static WeekendDiscountPolicy eventPolicy;
 

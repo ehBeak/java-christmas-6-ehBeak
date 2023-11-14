@@ -3,7 +3,7 @@ package christmas.model;
 import christmas.exception.ExceptionWithMessage;
 import christmas.model.menu.Menu;
 import christmas.model.policy.ChristmasDiscountPolicy;
-import christmas.model.policy.EventPolicy;
+import christmas.model.policy.DiscountPolicy;
 import christmas.model.policy.FreebiesEvent;
 import christmas.model.policy.FreebiesEventPolicy;
 import christmas.model.policy.SpecialDiscountPolicy;
@@ -20,15 +20,15 @@ public enum EventPolicyCategory {
     FREEBIES_EVENT("증정 이벤트", FreebiesEventPolicy.getInstance());
 
     private final String eventName;
-    private final EventPolicy eventPolicy;
+    private final DiscountPolicy discountPolicy;
 
-    EventPolicyCategory(String eventName, EventPolicy eventPolicy) {
+    EventPolicyCategory(String eventName, DiscountPolicy eventPolicy) {
         this.eventName = eventName;
-        this.eventPolicy = eventPolicy;
+        this.discountPolicy = eventPolicy;
     }
 
     public Integer calculateDiscountPrice(Orders orders) {
-        return eventPolicy.calculateDiscountPrice(orders) * -1;
+        return discountPolicy.calculateDiscountPrice(orders) * -1;
     }
 
     public String getEventName() {
@@ -42,7 +42,7 @@ public enum EventPolicyCategory {
 
     private FreebiesEvent getFreebiesPolicy() {
         try {
-            return (FreebiesEvent) eventPolicy;
+            return (FreebiesEvent) discountPolicy;
         } catch (ClassCastException exception) {
             throw new ExceptionWithMessage("[ERROR] 증정 할인 이벤트가 아닙니다.");
         }
