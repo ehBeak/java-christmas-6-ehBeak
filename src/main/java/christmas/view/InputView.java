@@ -2,8 +2,8 @@ package christmas.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import christmas.util.Converter;
-import christmas.validation.DateValidator;
-import christmas.validation.OrderFormatValidator;
+import christmas.util.validation.DateValidator;
+import christmas.util.validation.OrderFormatValidator;
 import java.time.LocalDate;
 import java.util.Map;
 

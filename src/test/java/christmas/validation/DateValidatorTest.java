@@ -3,6 +3,7 @@ package christmas.validation;
 import static christmas.exception.ErrorMessage.ONLY_DATE_ALLOWED;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import christmas.util.validation.DateValidator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
