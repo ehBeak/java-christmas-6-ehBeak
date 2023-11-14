@@ -4,11 +4,15 @@ import christmas.model.Orders;
 
 public class FixDiscountPolicy implements DiscountPolicy {
 
-    private static final Integer DISCOUNT_PRICE = 1000;
+    private final Integer discountPrice;
+
+    public FixDiscountPolicy(Integer discountPrice) {
+        this.discountPrice = discountPrice;
+    }
 
     @Override
     public Integer calculateBenefitPrice(Orders orders) {
-        return DISCOUNT_PRICE;
+        return discountPrice;
     }
 
     @Override

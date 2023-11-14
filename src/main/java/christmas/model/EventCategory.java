@@ -28,7 +28,7 @@ public enum EventCategory {
     CHRISTMAS_EVENT("크리스마스 디데이 할인", new ChristmasPeriod(), new IncrementDiscountPolicy(), new NoEventCondition()),
     WEEKDAY_EVENT("평일 할인", new DecemberPeriod(), new MenuDiscountPolicy(DESSERT), new DayOfWeekCondition(WEEK_DAYS)),
     WEEKEND_EVENT("주말 할인", new DecemberPeriod(), new MenuDiscountPolicy(MAIN), new DayOfWeekCondition(WEEKEND_DAYS)),
-    SPECIAL_EVENT("특별 할인", new DecemberPeriod(), new FixDiscountPolicy(), new SpecialDayCondition()),
+    SPECIAL_EVENT("특별 할인", new DecemberPeriod(), new FixDiscountPolicy(1000), new SpecialDayCondition()),
     FREEBIES_EVENT("증정 이벤트", new DecemberPeriod(), new FreebiesEventPolicy(Map.of(Menu.CHAMPAGNE, 1)),
             new ThresholdPriceCondition(12000));
 
