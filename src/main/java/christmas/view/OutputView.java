@@ -23,6 +23,10 @@ public class OutputView {
         System.out.println(String.format(PREVIEW_MESSAGE, orderDate.getMonthValue(), orderDate.getDayOfMonth()));
     }
 
+    public void printStartOrder() {
+        System.out.println("안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.");
+    }
+
     public void printOrderMenu(Map<Menu, Integer> orders) {
         System.out.println();
         System.out.println(ORDER_MENU_MESSAGE);

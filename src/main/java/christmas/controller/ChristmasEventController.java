@@ -1,6 +1,5 @@
 package christmas.controller;
 
-import christmas.factory.OrderFactory;
 import christmas.model.Badge;
 import christmas.model.Customer;
 import christmas.model.Orders;
@@ -14,22 +13,19 @@ public class ChristmasEventController {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final OrderFactory orderFactory;
 
     public ChristmasEventController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.orderFactory = new OrderFactory();
     }
 
     public void startOrder() {
+        outputView.printStartOrder();
         LocalDate orderDate = Retry.retryOnException(inputView::inputExpectedVisitDate);
-        Map<String, Integer> orderDetails = Retry.retryOnException(inputView::inputOrderDetails);
-        Orders orders = orderFactory.createOrders(orderDetails, orderDate);
-
+        Orders orders = Retry.retryOnException(() -> inputView.inputOrderDetails(orderDate));
         printOrderDetails(orderDate, orders);
-        Customer customer = new Customer(orders);
 
+        Customer customer = new Customer(orders);
         printFreebiesEvent(customer);
         printBenefitDetails(customer);
         printTotalBenefitPrice(customer);
