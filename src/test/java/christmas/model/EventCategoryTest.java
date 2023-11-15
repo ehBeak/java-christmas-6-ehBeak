@@ -6,10 +6,8 @@ import static christmas.model.EventCategory.SPECIAL_EVENT;
 import static christmas.model.EventCategory.WEEKDAY_EVENT;
 import static christmas.model.EventCategory.WEEKEND_EVENT;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
-import christmas.exception.ExceptionWithMessage;
 import christmas.model.menu.Menu;
 import java.time.LocalDate;
 import java.util.EnumMap;
@@ -84,15 +82,15 @@ class EventCategoryTest {
 
     }
 
-    @DisplayName("주문 내역이 증정 이벤트가 아니면 예외를 발생시킨다")
+    @DisplayName("주문 내역이 증정 이벤트가 아니면 빈 맵을 반환한다.")
     @ParameterizedTest
     @EnumSource(mode = Mode.EXCLUDE, names = {"FREEBIES_EVENT"})
     void freebiesPolicyThrowException(EventCategory category) {
         Orders orders = createNotOverThresholdPrice(LocalDate.of(2023, 12, 25));
 
-        assertThatThrownBy(() -> category.getFreebies(orders))
-                .isInstanceOf(ExceptionWithMessage.class)
-                .hasMessage("[ERROR] 증정 할인 이벤트가 아닙니다.");
+        Map<Menu, Integer> freebies = category.getFreebies(orders);
+
+        assertThat(freebies).isEmpty();
     }
 
 

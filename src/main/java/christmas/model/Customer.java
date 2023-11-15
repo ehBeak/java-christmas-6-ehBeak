@@ -3,6 +3,7 @@ package christmas.model;
 
 import christmas.model.menu.Menu;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -44,9 +45,18 @@ public class Customer {
     }
 
     public Map<String, Integer> getFreebies() {
-        Map<Menu, Integer> freebies = EventCategory.FREEBIES_EVENT.getFreebies(orders);
-        return freebies.keySet().stream()
-                .collect(Collectors.toMap(Menu::getName, Menu::getPrice));
+        Map<Menu, Integer> freebieMenus = addFreebieMenus();
+        return freebieMenus.keySet()
+                .stream()
+                .collect(Collectors.toMap(Menu::getName, freebieMenus::get));
+    }
+
+    private Map<Menu, Integer> addFreebieMenus() {
+        Map<Menu, Integer> menuIntegerMap = new HashMap<>();
+        for (EventCategory eventCategory : eventCategories) {
+            menuIntegerMap.putAll(eventCategory.getFreebies(orders));
+        }
+        return menuIntegerMap;
     }
 
     public Badge getEventBadge() {

@@ -64,15 +64,9 @@ public enum EventCategory {
     }
 
     public Map<Menu, Integer> getFreebies(Orders orders) {
-        FreebiesPolicy freebiesPolicy = getFreebiesPolicy();
-        return freebiesPolicy.getFreebies(orders);
-    }
-
-    private FreebiesPolicy getFreebiesPolicy() {
-        try {
-            return (FreebiesPolicy) benefitPolicy;
-        } catch (ClassCastException exception) {
-            throw new ExceptionWithMessage("[ERROR] 증정 할인 이벤트가 아닙니다.");
+        if (benefitPolicy instanceof FreebiesEventPolicy) {
+            return ((FreebiesEventPolicy) benefitPolicy).getFreebies(orders);
         }
+        return Map.of();
     }
 }
