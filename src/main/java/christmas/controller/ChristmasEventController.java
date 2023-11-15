@@ -1,5 +1,6 @@
 package christmas.controller;
 
+import camp.nextstep.edu.missionutils.Console;
 import christmas.model.Badge;
 import christmas.model.Customer;
 import christmas.model.Orders;
@@ -23,6 +24,7 @@ public class ChristmasEventController {
         outputView.printStartOrder();
         LocalDate orderDate = Retry.retryOnException(inputView::inputExpectedVisitDate);
         Orders orders = Retry.retryOnException(() -> inputView.inputOrderDetails(orderDate));
+        Console.close();
         printOrderDetails(orderDate, orders);
 
         Customer customer = new Customer(orders);

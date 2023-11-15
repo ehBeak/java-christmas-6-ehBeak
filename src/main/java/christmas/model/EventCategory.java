@@ -2,12 +2,11 @@ package christmas.model;
 
 import static christmas.model.DayOfWeekCategory.WEEKEND_DAYS;
 import static christmas.model.DayOfWeekCategory.WEEK_DAYS;
-import static christmas.model.menu.MenuCategory.*;
+import static christmas.model.menu.MenuCategory.DESSERT;
+import static christmas.model.menu.MenuCategory.MAIN;
 
-import christmas.exception.ExceptionWithMessage;
 import christmas.model.eventPolicy.DiscountPolicy;
 import christmas.model.eventPolicy.EventPolicy;
-import christmas.model.eventPolicy.FreebiesPolicy;
 import christmas.model.eventPolicy.MenuDiscountPolicy;
 import christmas.model.eventcondition.DayOfWeekCondition;
 import christmas.model.eventcondition.EventCondition;
@@ -28,10 +27,9 @@ public enum EventCategory {
     CHRISTMAS_EVENT("크리스마스 디데이 할인", new ChristmasPeriod(), new IncrementDiscountPolicy(), new NoEventCondition()),
     WEEKDAY_EVENT("평일 할인", new DecemberPeriod(), new MenuDiscountPolicy(DESSERT), new DayOfWeekCondition(WEEK_DAYS)),
     WEEKEND_EVENT("주말 할인", new DecemberPeriod(), new MenuDiscountPolicy(MAIN), new DayOfWeekCondition(WEEKEND_DAYS)),
-    SPECIAL_EVENT("특별 할인", new DecemberPeriod(), new FixDiscountPolicy(1000), new SpecialDayCondition()),
+    SPECIAL_EVENT("특별 할인", new DecemberPeriod(), new FixDiscountPolicy(Constants.DISCOUNT_PRICE), new SpecialDayCondition()),
     FREEBIES_EVENT("증정 이벤트", new DecemberPeriod(), new FreebiesEventPolicy(Map.of(Menu.CHAMPAGNE, 1)),
-            new ThresholdPriceCondition(120000));
-
+            new ThresholdPriceCondition(Constants.DISCOUNT_THRESHOLD_PRICE));
 
     private final String eventName;
     private final EventPeriod eventPeriod;
@@ -68,5 +66,10 @@ public enum EventCategory {
             return ((FreebiesEventPolicy) benefitPolicy).getFreebies(orders);
         }
         return Map.of();
+    }
+
+    private static class Constants {
+        public static final Integer DISCOUNT_THRESHOLD_PRICE = 120000;
+        public static final Integer DISCOUNT_PRICE = 1000;
     }
 }

@@ -23,9 +23,7 @@ public class Converter {
         try {
             return orders.stream()
                     .map(item -> item.split(ORDER_DELIMITER))
-                    .collect(Collectors.toMap(
-                            arr -> arr[0],
-                            arr -> Integer.parseInt(arr[1])));
+                    .collect(Collectors.toMap(arr -> arr[0], arr -> Integer.parseInt(arr[1])));
         } catch (IllegalStateException exception) {
             throw new ExceptionWithMessage(INVALID_ORDER.toString());
         }
