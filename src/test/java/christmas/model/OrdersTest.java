@@ -1,5 +1,8 @@
 package christmas.model;
 
+import static christmas.exception.ErrorMessage.INVALID_ORDER;
+import static christmas.exception.ErrorMessage.ONLY_BEVERAGE_NOT_ALLOWED;
+import static christmas.exception.ErrorMessage.ORDER_OVER_20_NOT_ALLOWED;
 import static christmas.model.menu.Menu.BUTTON_MUSHROOM_SOUP;
 import static christmas.model.menu.Menu.CHOCOLATE_CAKE;
 import static christmas.model.menu.Menu.RED_WINE;
@@ -41,7 +44,7 @@ class OrdersTest {
 
         assertThatThrownBy(() -> new Orders(orderMenus, orderDate))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 메뉴는 0개 주문할 수 없습니다.");
+                .hasMessage(INVALID_ORDER.toString());
     }
 
     @DisplayName("구매한 메뉴 총 개수가 20개가 넘어가면 예외가 발생한다.")
@@ -55,7 +58,7 @@ class OrdersTest {
 
         assertThatThrownBy(() -> new Orders(orderMenus, orderDate))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 메뉴는 한 번에 최대 20개까지만 주문할 수 있습니다.");
+                .hasMessage(ORDER_OVER_20_NOT_ALLOWED.toString());
     }
 
     @DisplayName("구매한 메뉴가 음료 밖에 없으면 예외가 발생한다.")
@@ -68,7 +71,7 @@ class OrdersTest {
 
         assertThatThrownBy(() -> new Orders(orderMenus, orderDate))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 음료만 주문할 수 없습니다.");
+                .hasMessage(ONLY_BEVERAGE_NOT_ALLOWED.toString());
     }
 
     @DisplayName("총 구매 개수가 20개 이하고 메뉴당 1개 이상 주문하며 음료 외의 메뉴도 주문하면 예외가 발생하지 않는다.")

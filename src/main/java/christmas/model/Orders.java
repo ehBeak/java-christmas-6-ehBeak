@@ -1,8 +1,8 @@
 package christmas.model;
 
+import static christmas.exception.ErrorMessage.INVALID_ORDER;
 import static christmas.exception.ErrorMessage.ONLY_BEVERAGE_NOT_ALLOWED;
 import static christmas.exception.ErrorMessage.ORDER_OVER_20_NOT_ALLOWED;
-import static christmas.exception.ErrorMessage.ORDER_UNDER_ZERO_NOT_ALLOWED;
 import static christmas.model.menu.MenuCategory.BEVERAGE;
 
 import christmas.exception.ExceptionWithMessage;
@@ -74,7 +74,7 @@ public class Orders {
 
     private void countZeroThrowException(Menu menu, Map<Menu, Integer> orders) {
         if (orders.get(menu).equals(0)) {
-            throw new ExceptionWithMessage(ORDER_UNDER_ZERO_NOT_ALLOWED.toString());
+            throw new ExceptionWithMessage(INVALID_ORDER.toString());
         }
     }
 
