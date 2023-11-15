@@ -23,7 +23,7 @@ class CustomerTest {
 
         Integer totalDiscountPrice = customer.getBenefitPrice();
 
-        assertThat(totalDiscountPrice).isEqualTo(-27200);
+        assertThat(totalDiscountPrice).isEqualTo(27200);
     }
 
     @DisplayName("사용자의 전체 할인 금액을 반환한다.")
@@ -48,9 +48,9 @@ class CustomerTest {
         Map<String, Integer> benefitDetails = customer.getBenefitDetails();
 
         assertThat(benefitDetails).containsOnly(
-                Map.entry("크리스마스 디데이 할인", -1200),
-                Map.entry("증정 이벤트", -25000),
-                Map.entry("특별 할인", -1000));
+                Map.entry("크리스마스 디데이 할인", 1200),
+                Map.entry("증정 이벤트", 25000),
+                Map.entry("특별 할인", 1000));
     }
 
     @DisplayName("주문 금액이 10000원 이하면 할인 혜택을 받을 수 없다.")

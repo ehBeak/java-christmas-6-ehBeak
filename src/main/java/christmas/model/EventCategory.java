@@ -51,14 +51,14 @@ public enum EventCategory {
 
     public Integer calculateBenefitPrice(Orders orders) {
         if (eventPeriod.isEventPeriod(orders) && eventCondition.satisfyEventCondition(orders)) {
-            return benefitPolicy.calculateBenefitPrice(orders) * -1;
+            return benefitPolicy.calculateBenefitPrice(orders);
         }
         return 0;
     }
 
     public Integer calculateDiscountPrice(Orders orders) {
         if (benefitPolicy instanceof DiscountPolicy) {
-            return ((DiscountPolicy) benefitPolicy).calculateDiscountPrice(orders) * -1;
+            return ((DiscountPolicy) benefitPolicy).calculateDiscountPrice(orders);
         }
         return 0;
     }

@@ -16,8 +16,10 @@ public class OutputView {
     private static final String BADGE_MESSAGE = "<12월 이벤트 배지>";
 
     private static final String PRICE_FORMAT = "%,d원";
-    private static final String MENU_PRICE_FORMAT = "%s: %,d원";
+    private static final String DISCOUNT_PRICE_FORMAT = "%,d원";
+    private static final String BENEFIT_EVENT_FORMAT = "%s: %,d원";
     private static final String ORDER_MENU_FORMAT = "%s %s개";
+    private static final Integer NEGATIVE_INTEGER = -1;
 
     public void printPreviewMessage(LocalDate orderDate) {
         System.out.println(String.format(PREVIEW_MESSAGE, orderDate.getMonthValue(), orderDate.getDayOfMonth()));
@@ -44,8 +46,7 @@ public class OutputView {
     public void printFreebiesMenu(Map<String, Integer> freebies) {
         System.out.println();
         System.out.println(FREEBIES_MESSAGE);
-        if (freebies.isEmpty()) {
-            System.out.println("없음");
+        if (isEmpty(freebies)) {
             return;
         }
         for (String benefitsDetail : freebies.keySet()) {
@@ -56,19 +57,19 @@ public class OutputView {
     public void printBenefits(Map<String, Integer> benefitsDetails) {
         System.out.println();
         System.out.println(BENEFITS_MESSAGE);
-        if (benefitsDetails.isEmpty()) {
-            System.out.println("없음");
+        if (isEmpty(benefitsDetails)) {
             return;
         }
         for (String benefitsDetail : benefitsDetails.keySet()) {
-            System.out.println(String.format(MENU_PRICE_FORMAT, benefitsDetail, benefitsDetails.get(benefitsDetail)));
+            System.out.println(String.format(
+                    BENEFIT_EVENT_FORMAT, benefitsDetail, benefitsDetails.get(benefitsDetail) * NEGATIVE_INTEGER));
         }
     }
 
     public void printTotalBenefitPrice(int totalBenefitPrice) {
         System.out.println();
         System.out.println(BENEFITS_PRICE_MESSAGE);
-        System.out.println(String.format(PRICE_FORMAT, totalBenefitPrice));
+        System.out.println(String.format(DISCOUNT_PRICE_FORMAT, totalBenefitPrice * NEGATIVE_INTEGER));
     }
 
     public void printExpectedPayment(int totalDiscountPrice) {
@@ -82,4 +83,13 @@ public class OutputView {
         System.out.println(BADGE_MESSAGE);
         System.out.println(badgeName);
     }
+
+    private Boolean isEmpty(Map<String, Integer> freebies) {
+        if (freebies.isEmpty()) {
+            System.out.println("없음");
+            return true;
+        }
+        return false;
+    }
+
 }

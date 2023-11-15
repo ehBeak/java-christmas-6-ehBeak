@@ -24,12 +24,12 @@ class EventCategoryTest {
 
     static Stream<Arguments> creatMenuCategoryAndBenefitPrice() {
         return Stream.of(
-                arguments(createValidOrder(LocalDate.of(2023, 12, 1)), CHRISTMAS_EVENT, -1000),
-                arguments(createValidOrder(LocalDate.of(2023, 12, 1)), WEEKEND_EVENT, -4046),
-                arguments(createValidOrder(LocalDate.of(2023, 12, 3)), WEEKDAY_EVENT, -6069),
-                arguments(createValidOrder(LocalDate.of(2023, 12, 25)), SPECIAL_EVENT, -1000),
-                arguments(createValidOrder(LocalDate.of(2023, 12, 24)), SPECIAL_EVENT, -1000),
-                arguments(createValidOrder(LocalDate.of(2023, 12, 25)), FREEBIES_EVENT, -25000),
+                arguments(createValidOrder(LocalDate.of(2023, 12, 1)), CHRISTMAS_EVENT, 1000),
+                arguments(createValidOrder(LocalDate.of(2023, 12, 1)), WEEKEND_EVENT, 4046),
+                arguments(createValidOrder(LocalDate.of(2023, 12, 3)), WEEKDAY_EVENT, 6069),
+                arguments(createValidOrder(LocalDate.of(2023, 12, 25)), SPECIAL_EVENT, 1000),
+                arguments(createValidOrder(LocalDate.of(2023, 12, 24)), SPECIAL_EVENT, 1000),
+                arguments(createValidOrder(LocalDate.of(2023, 12, 25)), FREEBIES_EVENT, 25000),
 
                 arguments(createValidOrder(LocalDate.of(2023, 12, 26)), CHRISTMAS_EVENT, 0),
                 arguments(createValidOrder(LocalDate.of(2023, 12, 3)), WEEKEND_EVENT, 0),
@@ -51,10 +51,10 @@ class EventCategoryTest {
 
     static Stream<Arguments> creatMenuCategoryAndDiscountPrice() {
         return Stream.of(
-                arguments(CHRISTMAS_EVENT, -3400),
-                arguments(WEEKEND_EVENT, -4046),
-                arguments(WEEKDAY_EVENT, -6069),
-                arguments(SPECIAL_EVENT, -1000),
+                arguments(CHRISTMAS_EVENT, 3400),
+                arguments(WEEKEND_EVENT, 4046),
+                arguments(WEEKDAY_EVENT, 6069),
+                arguments(SPECIAL_EVENT, 1000),
                 arguments(FREEBIES_EVENT, 0)
         );
     }
@@ -105,8 +105,8 @@ class EventCategoryTest {
 
     static Orders createNotOverThresholdPrice(LocalDate orderDate) {
         EnumMap<Menu, Integer> menuCounts = new EnumMap<>(Menu.class);
-        menuCounts.put(Menu.BUTTON_MUSHROOM_SOUP, 1); // 6000
-        menuCounts.put(Menu.BARBECUE_PASTA, 1); // 54000
+        menuCounts.put(Menu.BUTTON_MUSHROOM_SOUP, 1);
+        menuCounts.put(Menu.BARBECUE_PASTA, 1);
 
         return new Orders(menuCounts, orderDate);
     }

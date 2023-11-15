@@ -41,7 +41,7 @@ public class Customer {
     }
 
     public Integer getExpectedPayment() {
-        return orders.calculateTotalPrice() + getDiscountPrice();
+        return orders.calculateTotalPrice() - getDiscountPrice();
     }
 
     public Map<String, Integer> getFreebies() {
